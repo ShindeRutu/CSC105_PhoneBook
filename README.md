@@ -1,6 +1,6 @@
 # CSC105_PhoneBook
 
-A simple project based on data structures[stack and queue] and file handling that allows the basic functions :
+A simple project based on data structures[Stack, Queue and Binary Search Tree] and file handling that allows the basic functions :
 - add new contact
 - delete the contact
 - search for a contact
