@@ -1,4 +1,10 @@
- 
+ /*
+    Authors : 1) Rutu Shinde 
+              2) Suraj Pandey
+              3) Dinesh Gawas
+    Program for : PhoneBook
+    DS used : Stack, Queue, BST
+ */ 
  
  typedef char keyType;
    
