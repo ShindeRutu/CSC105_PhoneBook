@@ -10,4 +10,4 @@ A simple project based on data structures[stack and queue] and file handling tha
 - import/export contact   
 - merge duplicate contact
 - add a contact to fav list
-just like our real time contact application used on our mobile phones.
+just like our real time contact application used on our mobile phones..
