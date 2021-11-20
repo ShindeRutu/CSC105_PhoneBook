@@ -15,7 +15,7 @@
 /********** contactlist_isEmpty() ****************/
 _Bool contactlist_isEmpty(conBook *cList)
 {
-  if(conBook->count == 0)
+  if(cList->count == 0)
     return true;
   else 
     return false; 
@@ -65,7 +65,7 @@ _Bool deleteContact(conBook *cList, keyType dltKeyName)
 
 
 /************* delete() *************/
-node* _delete(node *, keyType,_Bool*)   //recursive method
+node* _delete(node *root, keyType dltKeyName,_Bool *success)   //recursive method
 {
 
 } 

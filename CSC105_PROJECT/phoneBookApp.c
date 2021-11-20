@@ -7,14 +7,17 @@
     Date created :  November 2021 
 */
 
-#include<stdio.h>
-#include<stdbool.h>
-#include<stdlib.h>
-#include<windows.h>    //fr console color change
-#include"phoneBook.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include "phoneBook.h"
 
 
 int main()
 {
-  system("color 0a");    //change console  color to black with greeen text
+  system("color 4E");    //change console  color to black with greeen text (only fr windows platform)
+  
+  printf("\n***********PhoneBook**********\n\n");
+  
+  return 0;
 }
