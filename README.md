@@ -1,13 +1,13 @@
 # CSC105_PhoneBook
 
-A simple project based on data structures[Stack, Queue and Binary Search Tree] and file handling that allows the basic functions :
-- add new contact
-- delete the contact
-- search for a contact
-- edit the contact
-- display the contact list
-- recent call log
-- import/export contact   
-- merge duplicate contact
-- add a contact to fav list
-just like our real time contact application used on our mobile phones..
+A simple project based on data structures [ Stack, Queue and Binary Search Tree] and file handling, mimicking our real time contact application used on our mobile phones, providing functions like :
+- To add new contact
+- To delete the contact
+- To search for a contact
+- To edit/modify the contact
+- To display the contact list
+- To display recent call log
+- To import/export contact   
+- To merge duplicate contact
+- To add a contact to fav list
+
