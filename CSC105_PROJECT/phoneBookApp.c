@@ -15,7 +15,7 @@
 
 int main()
 {
-  system("color 4E");    //change console  color to black with greeen text (only fr windows platform)
+  //system("color 4E");    //change console  color to black with greeen text (only fr windows platform)
   
   printf("\n***********PhoneBook**********\n\n");
   

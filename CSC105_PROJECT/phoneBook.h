@@ -19,7 +19,8 @@
     char companyName;   
     int  mobNumber[10];  //contact_num : mobile
     int  TelNumber[10];  //contact num : telephone(optional)
-    char email[20];     // email_add of contact
+    char email[20]; 
+	short fav;    // email_add of contact
   };
   typedef struct info info;
   
