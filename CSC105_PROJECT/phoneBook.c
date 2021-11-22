@@ -25,6 +25,17 @@ _Bool contactlist_isEmpty(conBook *cList)
 /*********** Create_contactlist() ****************/
 conBook* createContactList()
 {
+	conBook* newbook = (conBook*)malloc(sizeof(conBook));
+
+	if(conBook){
+
+		newbook->root = NULL;
+		newbook->count = 0;
+		return newbook;
+	}
+	else{
+		return NULL;
+	}
 
 }
   
@@ -32,6 +43,30 @@ conBook* createContactList()
 /*********** newContact() ****************/
  _Bool newContact(conBook *cList , info data)
  {
+	 node* new_ptr;
+	 new_ptr = (node*) malloc (sizeof(node));
+
+	 if(!new_ptr){
+
+		 return false;
+	 }
+	 else{
+
+		 new_ptr-> left = new_ptr-> right = NULL;
+		 new_ptr->data = data;
+
+		 if(cList->root == NULL){
+
+			 cList->root = new_ptr;
+		 }
+		 else{
+
+			 _insert(cList->root, new_ptr);
+		 }
+		 cList->count++;
+		 return true;
+	 }
+	 
 
  }
 
@@ -39,13 +74,28 @@ conBook* createContactList()
 /************* insertContact() ****************/
 node* _insert(node *root, node *newPtr)
 {
+	if(!root){
+		return new_ptr;
+	}
+	else if(new_ptr->data.key < root->data.key){
 
+		root->left = _insert(root->left, new_ptr);
+	}
+	else{
+		root->right = _insert(root->right, new_ptr);
+	}
+	return root;
 }
 
 
 /*************** displayContactKList() **************/
 void displayContactList(conBook *cList)
 {
+	if(root){
+		displayContactList(root->left);
+		printf("\n NAME:: %s \n NUMBER:: %d \nTEL_NUMBER:: %d \n Email:: %s "root->data.key,root->data.NUMBER,root->data.nTEL_NUMBER,root->data.Email);
+		displayContactList(root->right);
+	}
 
 }
 
@@ -58,28 +108,28 @@ void _display(node *root)    // inorder trravel : recursive method
   
 
 /************* deleteContact() ************/
-_Bool deleteContact(conBook *cList, keyType dltKeyName)
+_Bool deleteContact(conBook *cList, keyType dltkey)
 {
 
 }
 
 
 /************* delete() *************/
-node* _delete(node *root, keyType dltKeyName,_Bool *success)   //recursive method
+node* _delete(node *root, keyType dltkey,_Bool *success)   //recursive method
 {
 
 } 
 
 
 /********** searchContact() ***********/
-node* _search(node *root,keyType serKeyName)
+node* _search(node *root,keyType serkey)
 {
 
 }
 
   
 /******* modifyContact() ***********/
-_Bool modifyContact(conBook *cList ,keyType keyName, info data)
+_Bool modifyContact(conBook *cList ,keyType key, info data)
 {
 
 }  
@@ -93,7 +143,7 @@ _Bool recentCallLog(conBook *cList)
 
 
 /********* favContact() **************/
-_Bool favContact(conBook *cList, keyType keyName)
+_Bool favContact(conBook *cList, keyType key)
 {
 
 }
