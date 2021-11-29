@@ -142,6 +142,24 @@ node* _delete(node *root, keyType dltkey,_Bool *success)   //recursive method
 node* _search(node *root,keyType serkey)
 {
 
+	if(root==NULL)
+	{
+		return NULL;
+	}
+	if(serkey==root->data.key)
+	{
+		return root;
+	}
+	else if(serkey < root->data.key)
+	{
+		return _search(root->left, serkey);
+	}
+	else (serkey > root->data.key)
+	{
+		return _search(root->right, serkey);
+	}
+
+
 }
 
   
