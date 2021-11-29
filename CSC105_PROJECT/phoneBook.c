@@ -103,14 +103,31 @@ void displayContactList(conBook *cList)
 /*************** display()***************/
 void _display(node *root)    // inorder trravel : recursive method
 {
-
+	if(root!=NULL)
+	{
+		_display(root->left);
+		printf("%d", root->data);
+		_display(root->right);
+	}
 }
   
 
 /************* deleteContact() ************/
 _Bool deleteContact(conBook *cList, keyType dltkey)
 {
-
+	if(dltkey < cList->root->data.key)
+	{
+		deleteContact(cList->root->left, dltkey);
+	}
+	else if(dltkey > cList->root->data.key)
+	{
+		deleteContact(cList->root->right, dltkey);
+	}
+	//deletion
+	else
+	{
+		
+	}
 }
 
 
