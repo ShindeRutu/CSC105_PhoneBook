@@ -15,14 +15,32 @@
 
 int main()
 {
-  //system("color 4E");    //change console  color to black with greeen text (only fr windows platform)
+
+int choice;
+  keyType inputData;
+  int dltKey, serKey;
+  
+	
   
   printf("\n***********PhoneBook**********\n\n");
- // do{
- printf("1-# CREATE_PHONEBOOK # \t 2-# INSERT_CONTACT # \t 3-# SHOW_CONTACT #\t 4-# EDIT_CONTACT # \n\n 5-# CALL \t 6-# RECENT_CALLS \t 7-# FAVOURITES \t 8-# DELETE_CONTACT \t 9-# DELETE_ALL_CONTACTS");
- printf("\nEnter your choice: ");
-  //  scanf("%d",&choice);
- //switch(choice){
+
+	conBook *cb = createContactList();
+	
+  do{
+	// conBook *contact_book = createContactList();
+ 	//  if(!contact_book)
+	//   printf("failed");
   
+  
+ printf("1-# CREATE_PHONEBOOK # \t 2-# INSERT_CONTACT # \t 3-# SHOW_CONTACT #\t 4-# EDIT_CONTACT # \n\n 5-# CALL \t 6-# RECENT_CALLS \t 7-# FAVOURITES \t 8-# DELETE_CONTACT \t 9-# DELETE_ALL_CONTACTS");
+ printf("\nEnter your choice: \n");
+  //  scanf("%d",&choice);
+ 	switch(choice){
+		 case 1: 
+		 	 
+			  break;
+			  
+	 }
+  }while(choice!=10);
   return 0;
 }

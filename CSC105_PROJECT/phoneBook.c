@@ -27,14 +27,15 @@ conBook* createContactList()
 {
 	conBook* newbook = (conBook*)malloc(sizeof(conBook));
 
-	if(conBook){
+	if(!newbook){
 
+		return NULL;
+	}
+	else{
+		
 		newbook->root = NULL;
 		newbook->count = 0;
 		return newbook;
-	}
-	else{
-		return NULL;
 	}
 
 }
@@ -75,53 +76,53 @@ conBook* createContactList()
 node* _insert(node *root, node *newPtr)
 {
 	if(!root){
-		return new_ptr;
+		return newPtr;
 	}
-	else if(new_ptr->data.key < root->data.key){
+	if(newPtr->data.key < root->data.key){
 
-		root->left = _insert(root->left, new_ptr);
+		root->left = _insert(root->left, newPtr);
 	}
 	else{
-		root->right = _insert(root->right, new_ptr);
+		root->right = _insert(root->right, newPtr);
 	}
 	return root;
 }
 
 
 /*************** displayContactKList() **************/
-void displayContactList(conBook *cList)
+void displayContactList(conBook * cList )
 {
-	if(root){
-		displayContactList(root->left);
-		printf("\n NAME:: %s \n NUMBER:: %d \nTEL_NUMBER:: %d \n Email:: %s "root->data.key,root->data.NUMBER,root->data.nTEL_NUMBER,root->data.Email);
-		displayContactList(root->right);
+	if(cList){
+		displayContactList(cList->root->left);
+		printf("\n NAME:: %s \n NUMBER:: %d \nTEL_NUMBER:: %d \n Email:: %s "cList->data.key,cList->data.NUMBER,cList->data.nTEL_NUMBER,cList->data.Email);
+		displayContactList(cList->right);
 	}
 
 }
 
 
-/*************** display()***************/
-void _display(node *root)    // inorder trravel : recursive method
-{
-	if(root!=NULL)
-	{
-		_display(root->left);
-		printf("%d", root->data);
-		_display(root->right);
-	}
-}
+/*************** display contact()***************/
+// void _display_contact(node *root)    // inorder trravel : recursive method
+// {
+// 	if(root!=NULL)
+// 	{
+// 		_display(root->left);
+// 		printf("%d", root->data);
+// 		_display(root->right);
+// 	}
+// }
   
 
 /************* deleteContact() ************/
 _Bool deleteContact(conBook *cList, keyType dltkey)
 {
-	if(dltkey < cList->root->data.key)
+	if(dltkey < cList->cList->data.key)
 	{
-		deleteContact(cList->root->left, dltkey);
+		deleteContact(cList->cList->left, dltkey);
 	}
-	else if(dltkey > cList->root->data.key)
+	else if(dltkey > cList->cList->data.key)
 	{
-		deleteContact(cList->root->right, dltkey);
+		deleteContact(cList->cList->right, dltkey);
 	}
 	//deletion
 	else
@@ -139,7 +140,7 @@ node* _delete(node *root, keyType dltkey,_Bool *success)   //recursive method
 
 
 /********** searchContact() ***********/
-node* _search(node *root,keyType serkey)
+node* search(node *root,keyType serkey)
 {
 
 	if(root==NULL)
@@ -152,11 +153,11 @@ node* _search(node *root,keyType serkey)
 	}
 	else if(serkey < root->data.key)
 	{
-		return _search(root->left, serkey);
+		return search(root->left, serkey);
 	}
 	else (serkey > root->data.key)
 	{
-		return _search(root->right, serkey);
+		return search(root->right, serkey);
 	}
 
 

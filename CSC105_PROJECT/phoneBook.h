@@ -69,14 +69,15 @@
 
   // display contact list
   void displayContactList(conBook *cList);
-  void _display(node *root);    // inorder trav : recursive method
+  
+ // void _display_contact(node *root);    // inorder trav : recursive method
   
   // to delete the contact from the list
   _Bool deleteContact(conBook *cList, keyType dltKeyName);
   node* _delete(node *, keyType,_Bool*);   //recursive method
   
   // to search the contact
-  node* _search(node *root,keyType serKeyName);
+  node* search(node *root,keyType serKeyName);
   
   // to modify/edit the contact
   _Bool modifyContact(conBook *cList ,keyType keyName, info data);
