@@ -17,6 +17,8 @@ int main()
 {
 
 int choice;
+
+  info input;
   keyType inputData;
   int dltKey, serKey;
   
@@ -26,34 +28,33 @@ int choice;
 
 	conBook *tree = createContactList();
 	
-  do{
+ 
 	
   
  printf("1-# INSERT_CONTACT # \t 2-# SHOW_CONTACT #\t 3-# EDIT_CONTACT # \n\n \t 4-# RECENT_CALLS \t 5-# FAVOURITES \t 6-# DELETE_CONTACT ");
  printf("\nEnter your choice: \n");
   //  scanf("%d",&choice);
+   do{
  	switch(choice){
 		 case 1: //INSERT_CONTACT
 
-				 printf("\nEnter the values to be inserted like Roll number and Name\n:-\t");
-                    while(scanf("%d%s",&input.key,input.name) !=2){
-						while(getchar()!='\n')
-                		printf("Invalid input! Please enter an integer for roll no. and a string for name.");
+				 printf("\nEnter the details to be added\n:-\t");
+                    scanf("%s%d",input.key,&input.mobNumber,input.email,input.fav);
                 		printf("\n");                             
-					}
+					
                     if(BST_insert(tree,input)==true)
-                        printf("\n %d &  %s Inserted",input.key,input.name);
+                        printf("\n contact added \n");
                     
 			break;
 		
 		case 2: //show contact list
 				if(!isEmpty(tree))
                     {   
-                        printf("\nIn Traverse : \n");
+                        printf("\nCONTACT LIST: \n");
                         BST_intraverse(tree);
                     }
                     else
-                        printf("\n no Elemented is inserted\n");
+                        printf("\n no contacts to display \n");
 
 		break;
 		 	 

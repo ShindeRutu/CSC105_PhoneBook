@@ -73,7 +73,7 @@
  // void _display_contact(node *root);    // inorder trav : recursive method
   
   // to delete the contact from the list
-  Bool deleteContact(conBook *cList, keyType dltKeyName);
+  _Bool deleteContact(conBook *cList, keyType dltKeyName);
   node* _delete(node *, keyType,_Bool*);   //recursive method
   
   // to search the contact
