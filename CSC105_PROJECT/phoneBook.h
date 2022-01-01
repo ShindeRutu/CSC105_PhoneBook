@@ -15,7 +15,7 @@
   //to store mandatory info of the person
   struct info
   {
-    keyType key;        // name of the person
+    keyType key[20];        // name of the person
     char companyName;   
     int  mobNumber[10];  //contact_num : mobile
     int  TelNumber[10];  //contact num : telephone(optional)
@@ -65,19 +65,19 @@
   
   // to add new contact to the list
   _Bool newContact(conBook *cList , info data);
-  node* _insert(node *root, node *newPtr);
+  _Bool _insert(node *root, node *newPtr);
 
   // display contact list
   void displayContactList(conBook *cList);
   
- // void _display_contact(node *root);    // inorder trav : recursive method
+  void _display_contactlist(node *root);    // inorder trav : recursive method
   
   // to delete the contact from the list
-  _Bool deleteContact(conBook *cList, keyType dltKeyName);
-  node* _delete(node *, keyType,_Bool*);   //recursive method
+  _Bool deleteContact(conBook *cList, keyType dltKeyName[]);
+  node* _delete(node *root, keyType dltkey[], bool *success);   //recursive method
   
   // to search the contact
-  node* search(node *root,keyType serKeyName);
+  node* search(node *root,keyType serKeyName[]);
   
   // to modify/edit the contact
   _Bool modifyContact(conBook *cList ,keyType keyName, info data);
