@@ -128,7 +128,7 @@ void _display_contactlist(node *root) // inorder trravel : recursive method
   {
     _display_contactlist(root->left); //inorder
     //_print(root->data.key);
-    printf("%d%s", root->data.key, root->data.key);
+    printf("Name: %s\n Phone number: %s \n Telphone number: %s\n Email: %s", root->data.key, root->data.mobNumber, root->data.TelNumber, root->data.email);
     _display_contactlist(root->right);
   }
 }
@@ -202,14 +202,14 @@ node *_delete(node *root, keyType dltkey[], bool *success) //recursive method
 }
 
 /********** searchContact() ***********/
-  node *search(node *root, keyType serkey[])
+node *search(node *root, keyType serkey[])
 {
 
   if (root == NULL)
   {
     return NULL;
   }
-  if (serkey == root->data.key)
+  if (strcmp(root->data.key, serkey) == 0)
   {
     return root;
   }
@@ -218,9 +218,9 @@ node *_delete(node *root, keyType dltkey[], bool *success) //recursive method
     return search(root->left, serkey);
   }
   else
-    {
-      return search(root->right, serkey);
-    }
+  {
+    return search(root->right, serkey);
+  }
 }
 
 /********* recentCallLog() ************/

@@ -38,14 +38,14 @@ int main()
 
       do
       {
-        printf("\nEnter the details to be added:\n\t");
-        printf("\nEnter the name: \n\t");
+         printf("\nEnter the details to be added:\n\t");
+        printf("\nEnter the name: \n");
         scanf("%s", &input.key);
-        printf("\nEnter the Phone number: \n\t");
+        printf("\nEnter the Phone number: \n");
         scanf("%s", &input.mobNumber);
-        printf("\nEnter the telephone number: \n\t");
+        printf("\nEnter the telephone number: \n");
         scanf("%s", &input.TelNumber);
-        printf("\nEnter the email: \n\t");
+        printf("\nEnter the email: \n");
         scanf("%s", &input.email);
 
         if (newContact(tree, input))
@@ -57,7 +57,7 @@ int main()
         else
         {
           printf("Contact can't be added, Please enter different name");
-          printf("1) Enter again \n 2) Quit to previous menu");
+          printf("\n1) Enter again \n 2) Quit to previous menu\n");
           scanf("%d", &choice2);
           if (choice2 == 1)
           {
@@ -91,7 +91,7 @@ int main()
       break;
 
     case 5: //search
-      printf("Enter the name of the person you want to search: ");
+    printf("\n Enter the name of the person you want to search: ");
       scanf("%s", &searchkey);
       node *n = search(tree->root, searchkey);
       if (n == NULL)
@@ -100,8 +100,8 @@ int main()
       }
       else
       {
-        printf("Contact found");
-        printf("Name: %s\n Company name: %s \n Phone number: %s \n Telphone number: %s\n Email; %s", n->data.key, n->data.companyName, n->data.mobNumber, n->data.TelNumber, n->data.email);
+        printf("Contact found\n");
+        printf("Name: %s\n Phone number: %s \n Telphone number: %s\n Email: %s\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
       }
       break;
 
