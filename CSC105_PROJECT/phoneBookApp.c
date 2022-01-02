@@ -29,7 +29,7 @@ int main()
 
   do
   {
-  printf("1-# ADD A CONTACT # \t 2-# SHOW_CONTACT #\t 3-# EDIT_CONTACT # \n\n \t 4-# RECENT_CALLS \t 5-# SEARCH \t 6-# DELETE_CONTACT ");
+  printf("1-# ADD A CONTACT # \t 2-# SHOW_CONTACT #  \t 3-# EDIT_CONTACT # \n\n  4-# RECENT_CALLS \t 5-# SEARCH \t 6-# DELETE_CONTACT ");
   printf("\nEnter your choice: \n");
   scanf("%d",&choice);
     switch (choice)
@@ -38,15 +38,15 @@ int main()
 
       do
       {
-         printf("\nEnter the details to be added:\n\t");
+        printf("\nEnter the details to be added:\n\t");
         printf("\nEnter the name: \n");
-        scanf("%s", &input.key);
+		scanf(" %[^\n]s",input.key);
         printf("\nEnter the Phone number: \n");
-        scanf("%s", &input.mobNumber);
+        scanf("%d", &input.mobNumber);
         printf("\nEnter the telephone number: \n");
-        scanf("%s", &input.TelNumber);
+        scanf("%d", &input.TelNumber);
         printf("\nEnter the email: \n");
-        scanf("%s", &input.email);
+        scanf("%s", input.email);
 
         if (newContact(tree, input))
         {
@@ -56,7 +56,7 @@ int main()
         }
         else
         {
-          printf("Contact can't be added, Please enter different name");
+          printf("Contact can't be added, Please enter different name \n");
           printf("\n1) Enter again \n 2) Quit to previous menu\n");
           scanf("%d", &choice2);
           if (choice2 == 1)
@@ -91,17 +91,17 @@ int main()
       break;
 
     case 5: //search
-    printf("\n Enter the name of the person you want to search: ");
-      scanf("%s", &searchkey);
+    printf("\n Enter the name of the person you want to search: \n");
+      scanf("%s",searchkey);
       node *n = search(tree->root, searchkey);
       if (n == NULL)
       {
-        printf("Contact with this name is not found");
+        printf("Contact with this name is not found \n");
       }
       else
       {
-        printf("Contact found\n");
-        printf("Name: %s\n Phone number: %s \n Telphone number: %s\n Email: %s\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
+        printf("Contact found\n\n\n");
+        printf("Name: %s\n Phone number: %d \n Telphone number: %d\n Email: %s\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
       }
       break;
 
@@ -111,20 +111,20 @@ int main()
     case 7: //delete
       if (!contactlist_isEmpty(tree))
       {
-        while (scanf("%d", &key) != 1)
+        while (scanf("%s", key) != 1)
         {
           while (getchar() != '\n');
-          printf("Invalid input! Please enter a roll no of integer data type.");
+          printf("Invalid input! Please enter a roll no of integer data type.\n");
           printf("\n");
           continue;
         }
         if (deleteContact(tree, key) == true)
-          printf("\nDEL SuccessFul %d", key);
+          printf("DEL SuccessFul %s \n", key);
         else
-          printf("\n NOT FOUND");
+          printf(" NOT FOUND");
       }
       else
-        printf("\nUnderflow");
+        printf("Underflow\n");
       break;
 
       break;

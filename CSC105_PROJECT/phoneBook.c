@@ -42,7 +42,7 @@ conBook *createContactList()
 }
 
 /*********** newContact() ****************/
-_Bool newContact(conBook *cList, info data)
+bool newContact(conBook *cList, info data)
 {
   node *new_ptr;
   new_ptr = (node *)malloc(sizeof(node));
@@ -65,12 +65,12 @@ _Bool newContact(conBook *cList, info data)
     }
     else
     {
-      bool status = _insert(cList->root, new_ptr);
-      if (!status)
-      {
-        return false;
-      }
-      //_insert(cList->root, new_ptr);
+    //   bool status = _insert(cList->root, new_ptr);
+    //   if (!status)
+    //   {
+    //     return false;
+    //   }
+    _insert(cList->root, new_ptr);
     }
     cList->count++;
     return true;
@@ -78,46 +78,46 @@ _Bool newContact(conBook *cList, info data)
 }
 
 /************* insertContact() ****************/
-bool _insert(node *root, node *newPtr)
+node* _insert(node *root, node *newPtr)
 {
-  node *prev = NULL;
-  while (root != NULL)
-  {
-    prev = root;
-    if (strcmp(newPtr->data.key, root->data.key) == 0)
-    {
-      return false;
-    }
-    else if (strcmp(newPtr->data.key, root->data.key) == -1)
-    {
-      root = root->left;
-    }
-    else
-    {
-      root = root->right;
-    }
-  }
+//   node *prev = NULL;
+//   while (root != NULL)
+//   {
+//     prev = root;
+//     if (strcmp(newPtr->data.key, root->data.key) == 0)
+//     {
+//       return false;
+//     }
+//     else if (strcmp(newPtr->data.key, root->data.key) == -1)
+//     {
+//       root = root->left;
+//     }
+//     else
+//     {
+//       root = root->right;
+//     }
+//   }
 
-  if (strcmp(newPtr->data.key, root->data.key) == -1)
-  {
-    prev->left = newPtr;
-  }
-  else
-  {
-    prev->right = newPtr;
-  }
-  return true;
-  // if(!root){
-  // 		return newPtr;
-  // 	}
-  // 	if(newPtr->data.key < root->data.key){
+//   if (strcmp(newPtr->data.key, root->data.key) == -1)
+//   {
+//     prev->left = newPtr;
+//   }
+//   else
+//   {
+//     prev->right = newPtr;
+//   }
+//   return true;
+  if(!root){
+  		return newPtr;
+  	}
+  	if(newPtr->data.key < root->data.key){
 
-  // 		root->left = _insert(root->left, newPtr);
-  // 	}
-  // 	else{
-  // 		root->right = _insert(root->right, newPtr);
-  // 	}
-  // 	return root;
+  		root->left = _insert(root->left, newPtr);
+  	}
+  	else{
+  		root->right = _insert(root->right, newPtr);
+  	}
+  	return root;
 }
 
 
@@ -128,7 +128,7 @@ void _display_contactlist(node *root) // inorder trravel : recursive method
   {
     _display_contactlist(root->left); //inorder
     //_print(root->data.key);
-    printf("Name: %s\n Phone number: %s \n Telphone number: %s\n Email: %s", root->data.key, root->data.mobNumber, root->data.TelNumber, root->data.email);
+    printf("Name: %s\n Phone number: %d \n Telphone number: %d\n Email: %s \n\n", root->data.key, root->data.mobNumber, root->data.TelNumber, root->data.email);
     _display_contactlist(root->right);
   }
 }

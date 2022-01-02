@@ -17,8 +17,8 @@
   {
     keyType key[20];        // name of the person
     char companyName;   
-    int  mobNumber[10];  //contact_num : mobile
-    int  TelNumber[10];  //contact num : telephone(optional)
+    int  mobNumber;  //contact_num : mobile
+    int  TelNumber;  //contact num : telephone(optional)
     char email[20]; 
 	short fav;    // email_add of contact
   };
@@ -64,8 +64,8 @@
   conBook* createContactList();
   
   // to add new contact to the list
-  _Bool newContact(conBook *cList , info data);
-  _Bool _insert(node *root, node *newPtr);
+  bool newContact(conBook *cList , info data);
+  node* _insert(node *root, node *newPtr);
 
   // display contact list
   void displayContactList(conBook *cList);
