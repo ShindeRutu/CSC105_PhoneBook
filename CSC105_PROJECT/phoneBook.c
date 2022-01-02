@@ -114,9 +114,11 @@ node* _insert(node *root, node *newPtr)
 
   		root->left = _insert(root->left, newPtr);
   	}
-  	else{
+  	else if(newPtr->data.key > root->data.key)
+	{
   		root->right = _insert(root->right, newPtr);
   	}
+	else{printf("Name already present....please select another name")}
   	return root;
 }
 
