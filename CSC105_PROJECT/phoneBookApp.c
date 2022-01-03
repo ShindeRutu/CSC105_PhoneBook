@@ -11,14 +11,15 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include "phoneBook.h"
+#include "queue.h"
 
 int main()
 {
 
   int choice;
-
+ // node *root;
   info input;
-  keyType inputData;
+  //keyType inputData;
   int dltKey, serKey, choice2;
   char searchkey[20], key[20];
   bool status;
@@ -26,50 +27,48 @@ int main()
   printf("\n***********PhoneBook**********\n\n");
 
   conBook *tree = createContactList();
+  queueType q = createQueue();
+  
 
   do
   {
-  printf("1-# ADD A CONTACT # \t 2-# SHOW_CONTACT #  \t 3-# EDIT_CONTACT # \n\n  4-# RECENT_CALLS \t 5-# SEARCH \t 6-# DELETE_CONTACT ");
+  printf("1-# ADD A CONTACT # \n 2-# SHOW_CONTACT #  \n 3-# EDIT_CONTACT # \n\n  4-# RECENT_CALLS \n 5-# SEARCH \n 6-# DELETE_CONTACT ");
   printf("\nEnter your choice: \n");
   scanf("%d",&choice);
     switch (choice)
     {
     case 1: //INSERT_CONTACT
 
-      do
-      {
+      
         printf("\nEnter the details to be added:\n\t");
         printf("\nEnter the name: \n");
 		scanf(" %[^\n]s",input.key);
-        printf("\nEnter the Phone number: \n");
+		//yha search lga 
+		if(search(tree->root, input.key))
+		{printf("Name already present....please select another name \n\n");}
+
+
+		//if(root.key == input.key)){printf("double");}
+		else{
+		printf("\nEnter the Phone number: \n");
         scanf("%d", &input.mobNumber);
         printf("\nEnter the telephone number: \n");
         scanf("%d", &input.TelNumber);
         printf("\nEnter the email: \n");
         scanf("%s", input.email);
-
+		printf("Is this contact Favourite ?\nIf yes press 1 if No press 0 ");
+		if((scanf("%d",&input.fav))== 1)
+		{
+			printf("dhwegdfweydcgk");	
+		}
+		
         if (newContact(tree, input))
         {
           printf("\n contact added \n");
 
-          status = false;
-        }
-        else
-        {
-          printf("Contact can't be added, Please enter different name \n");
-          printf("\n1) Enter again \n 2) Quit to previous menu\n");
-          scanf("%d", &choice2);
-          if (choice2 == 1)
-          {
-            status = true;
-          }
-          else if (choice2 == 2)
-          {
-            status = false;
-          }
-        }
-      } while (status==true);
-
+		}        
+		}
+      
       break;
 
     case 2: //show contact list

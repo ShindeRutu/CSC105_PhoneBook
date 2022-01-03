@@ -44,6 +44,8 @@ conBook *createContactList()
 /*********** newContact() ****************/
 bool newContact(conBook *cList, info data)
 {
+	
+	{
   node *new_ptr;
   new_ptr = (node *)malloc(sizeof(node));
 
@@ -76,37 +78,31 @@ bool newContact(conBook *cList, info data)
     return true;
   }
 }
+}
+
+bool searchforinsert(node *root,keyType serKeyName[]){
+
+	 if (root==NULL)
+  {
+    return NULL;
+  }
+  else if(serKeyName < root->data.key)
+  {
+    return search(root->left,serKeyName);// recurrsion
+  }
+  else if(serKeyName > root->data.key)
+  {
+    return search(root->right,serKeyName);
+  }
+  else
+    return true;
+
+}
 
 /************* insertContact() ****************/
 node* _insert(node *root, node *newPtr)
 {
-//   node *prev = NULL;
-//   while (root != NULL)
-//   {
-//     prev = root;
-//     if (strcmp(newPtr->data.key, root->data.key) == 0)
-//     {
-//       return false;
-//     }
-//     else if (strcmp(newPtr->data.key, root->data.key) == -1)
-//     {
-//       root = root->left;
-//     }
-//     else
-//     {
-//       root = root->right;
-//     }
-//   }
 
-//   if (strcmp(newPtr->data.key, root->data.key) == -1)
-//   {
-//     prev->left = newPtr;
-//   }
-//   else
-//   {
-//     prev->right = newPtr;
-//   }
-//   return true;
   if(!root){
   		return newPtr;
   	}
@@ -118,7 +114,11 @@ node* _insert(node *root, node *newPtr)
 	{
   		root->right = _insert(root->right, newPtr);
   	}
-	else{printf("Name already present....please select another name")}
+	else
+	{
+		printf("Name already present....please select another name");
+		return NULL;
+	}
   	return root;
 }
 
@@ -225,15 +225,18 @@ node *search(node *root, keyType serkey[])
   }
 }
 
+
 /********* recentCallLog() ************/
 _Bool recentCallLog(conBook *cList)
 {
+	//incoming, outgoing and missed flag if 1 then added initially 0
 }
 
 /********* favContact() **************/
-_Bool favContact(conBook *cList, keyType key)
-{
-}
+// _Bool favContact(conBook *cList, keyType key)
+// {
+	
+// }
 
 
 /*********** impExpContact() ***********/

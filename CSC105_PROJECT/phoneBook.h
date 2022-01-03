@@ -19,8 +19,9 @@
     char companyName;   
     int  mobNumber;  //contact_num : mobile
     int  TelNumber;  //contact num : telephone(optional)
-    char email[20]; 
-	short fav;    // email_add of contact
+    char email[20];  // email_add of contact
+	int fav;  
+	int call;  
   };
   typedef struct info info;
   
@@ -78,6 +79,8 @@
   
   // to search the contact
   node* search(node *root,keyType serKeyName[]);
+
+  bool searchforinsert(node *root,keyType serKeyName[]);
   
   // to modify/edit the contact
   _Bool modifyContact(conBook *cList ,keyType keyName, info data);
@@ -86,7 +89,7 @@
   _Bool recentCallLog(conBook *cList);
 
   // add contact to fav list
- _Bool favContact(conBook *cList, keyType keyName);
+ node* favContact(conBook *cList, keyType keyName);
 
   // merge contact
 
