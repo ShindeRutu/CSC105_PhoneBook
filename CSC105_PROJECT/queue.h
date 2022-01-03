@@ -1,73 +1,74 @@
 
 #include<stdbool.h>
-#ifndef _QUEUE_H
-    #define _QUEUE_H
-    typedef int eleType;
+#include"graph-adjList.h"
+#ifndef QUEUE_H
+    #define QUEUE_H
+    typedef info* eleType_q;
     
     //DATA
+    
+    struct q_node
+    {
+        eleType_q data;
+        struct q_node *next;
+
+    };
+    typedef struct q_node node;
     struct queue
     {
-        struct queue_node *front;  //start
-        struct queue_node *rear;
+        struct q_node *front;
+        struct q_node *rear;
         int count;
     };
-    typedef struct queue queueType;
-
-    struct queue_node
-    {
-        eleType data;
-        struct queue_node *next;
-
-    };
-    typedef struct queue_node q_node;
-
-//prototypes
-   
-    // Function: removes element from front of the queue
-    // Precondition: queue is not empty
-    // Input: *queueType
-    // output: element from the front queue
-    // Postcondition: element at front is deleted
-    eleType dequeue(queueType *s1);//remove from begining
-     // Function: destroys the queue
-    // Precondition: queue is created
-    // Input: *queueType
-    // output: none
-    // Postcondition: deletes all elements and free memory
-    void destroyQueue(queueType *);
+    typedef struct queue qType;
     
-     //Function :  creates a new empty queue
+    //Function :  creates a new empty queue
     //precondition : none
     //input: none
     //output: qType
     //postCondition : an Empty queue is created
-    queueType createQueue();
+    qType createQueue();
+
+    // Function: checks if the queue is empty
+    // Precondition: none
+    // Input:  queueType
+    // output: true if queue is empty and false if queue is not empty
+    // Postcondition: none
+    _Bool isEmpty(qType);
+    
+    
     // Function: inserts an element on rear
     // Precondition: queue is not full
     // Input: *queueType, eleType
     // output: true if enque is successful and false if enque is not successful
     // Postcondition: new element is inserted
-    _Bool enqueue(eleType ele, queueType *s1);//add at end
+    _Bool enqueue(eleType_q, qType *q1);
     
-     // Function: checks if the queue is full
-    // Precondition: none
-    // Input:  queueType
-    // output: true if queue is full and false if queue is not full
-    // Postcondition: none
-    _Bool isFull(queueType s);
-     // Function: checks if the queue is empty
-    // Precondition: none
-    // Input:  queueType
-    // output: true if queue is empty and false if queue is not empty
-    // Postcondition: none
-    _Bool isEmpty(queueType s);
+    // Function: destroys the queue
+    // Precondition: queue is created
+    // Input: *queueType
+    // output: none
+    // Postcondition: deletes all elements and free memory
+    void destroyQueue(qType *);
+    
+    // Function: removes element from front of the queue
+    // Precondition: queue is not empty
+    // Input: *queueType
+    // output: element from the front queue
+    // Postcondition: element at front is deleted
+    eleType_q dequeue(qType *);
     
     //Function: displays the elements of the queue
     //Precondition: queue is not empty
     //Input: queueType
     //output: displays the elements of the queue
     //Postcondition: none
+    void display(qType *);
     
-    void display(queueType *s1);
-    
+    // Function: checks if the queue is full
+    // Precondition: none
+    // Input:  queueType
+    // output: true if queue is full and false if queue is not full
+    // Postcondition: none
+     _Bool isFull(qType);
 #endif

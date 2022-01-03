@@ -59,7 +59,7 @@ int main()
 		printf("Is this contact Favourite ?\nIf yes press 1 if No press 0 ");
 		if((scanf("%d",&input.fav))== 1)
 		{
-			printf("dhwegdfweydcgk");	
+			enqueue(input.,&q);
 		}
 		
         if (newContact(tree, input))
