@@ -116,7 +116,7 @@
     {   printf("\nFavourite list .....\n");  
         while(ptr != NULL)   
         {  
-            printf("\n%s\n",ptr->data->key);  
+            printf("\n%s\n",ptr->data.key);  
             ptr = ptr->next; 
         }  
     }  

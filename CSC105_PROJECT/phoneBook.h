@@ -26,7 +26,6 @@
   typedef struct info info;
   
 
-
   //to store additional info of the person (optional case)
   struct additionalInfo
   { 

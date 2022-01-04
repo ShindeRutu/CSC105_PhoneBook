@@ -8,7 +8,7 @@
 #include "phoneBook.h"
 #ifndef _QUEUE_H
     #define _QUEUE_H
-    typedef info* eleType;
+    typedef info eleType;
     
     //DATA
     struct queue

@@ -19,6 +19,7 @@ int main()
   int choice;
  // node *root;
   info input;
+  info input2;
   //keyType inputData;
   int dltKey, serKey, choice2;
   char searchkey[20], key[20];
@@ -60,7 +61,8 @@ int main()
 		printf("Is this contact Favourite ?\nIf yes press 1 if No press 0 ");
 		if((scanf("%d",&input.fav))== 1)
 		{
-			enqueue(&input,&q);
+			input2 = input;
+			enqueue(input2,&q);
 		}
 		
         if (newContact(tree, input))
