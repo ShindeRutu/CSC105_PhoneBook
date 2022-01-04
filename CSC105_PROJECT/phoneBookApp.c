@@ -24,7 +24,7 @@ int main()
   char searchkey[20], key[20];
   bool status;
 
-  printf("\n***********PhoneBook**********\n\n");
+  printf("\n\t\t\t\t\t***********   PHONE-BOOK   **********\n\n");
 
   conBook *tree = createContactList();
   queueType q = createQueue();
@@ -32,7 +32,7 @@ int main()
 
   do
   {
-  printf("1-# ADD A CONTACT # \n 2-# SHOW_CONTACT #  \n 3-# EDIT_CONTACT # \n\n  4-# RECENT_CALLS \n 5-# SEARCH \n 6-# DELETE_CONTACT ");
+  printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACT \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> RECENT_CALLS \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6-> DELETE_CONTACT");
   printf("\nEnter your choice: \n");
   scanf("%d",&choice);
     switch (choice)
@@ -40,12 +40,13 @@ int main()
     case 1: //INSERT_CONTACT
 
       
-        printf("\nEnter the details to be added:\n\t");
-        printf("\nEnter the name: \n");
-		scanf(" %[^\n]s",input.key);
-		//yha search lga 
+        printf("\nEnter the details to be added:\n");
+        printf("\nEnter the name:\n");
+		scanf(" %[^\n]s",input.key); //it searches first if name present or not
+		
+
 		if(search(tree->root, input.key))
-		{printf("Name already present....please select another name \n\n");}
+		{printf("Name already present....please select another name \n");}
 
 
 		//if(root.key == input.key)){printf("double");}
@@ -59,7 +60,7 @@ int main()
 		printf("Is this contact Favourite ?\nIf yes press 1 if No press 0 ");
 		if((scanf("%d",&input.fav))== 1)
 		{
-			enqueue(input.,&q);
+			enqueue(&input,&q);
 		}
 		
         if (newContact(tree, input))
@@ -100,7 +101,7 @@ int main()
       else
       {
         printf("Contact found\n\n\n");
-        printf("Name: %s\n Phone number: %d \n Telphone number: %d\n Email: %s\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
+        printf("\t\t\t\t\tName: %s\n\t\t\t\t\t Phone number: %d\n\t\t\t\t\t Telphone number: %d\n\t\t\t\t\t Email: %s\n\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
       }
       break;
 
@@ -118,21 +119,21 @@ int main()
           continue;
         }
         if (deleteContact(tree, key) == true)
-          printf("DEL SuccessFul %s \n", key);
+          printf("\t\t\t\t\t.....Contact deleted.... %s \n", key);
         else
           printf(" NOT FOUND");
       }
       else
-        printf("Underflow\n");
+        printf("No cantacts to delete\n");
       break;
 
       break;
 
     case 8: //exit
-      printf("\nEXIT");
+      printf("\n\t\t\t\t\tEXIT");
       break;
     default:
-      printf("\nInvalid choice please choose between 1-7");
+      printf("\n\t\t\t\t\tInvalid choice please choose between 1-7");
       break;
     }
   } while (choice != 8);

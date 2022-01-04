@@ -1,87 +1,118 @@
-
-#include<stdlib.h>
+/*
+AUTHOR : Dineshgawas
+PROGRAM: STACK USING LINKED LIST(ADT specification)
+DATE CREATED: SEPT 2021
+*/
 #include<stdio.h>
+#include<stdlib.h>
 #include<stdbool.h>
 #include"queue.h"
 
-_Bool isEmpty(qType q1) //it checks if the queue is empty or not
+
+
+
+/********* cretaeQueue()  *******/
+queueType createQueue()
 {
-    if(q1.front==NULL&& q1.front==NULL)
-    {
-        return true;
-    }
-    return false;
+  queueType q;
+  q.front = NULL;
+  q.rear = NULL;
+  q.count = 0;  // intial num of node is 0
+  return q;
 }
-_Bool isFull(qType q1) //it checks if the queue is full or not
+
+/* ==========Isfull ===========*/
+// further impro
+bool isFull(queueType q1)
 {
-    return false; //if malloc return false so it is not able to allocate extra memory 
-                      // in that case isFull returns true.
+  return false;   // assumption:  memory is never full // false bcz we can add as many elements as system permits, hence no need to consider this condition.  
 }
-qType createQueue() //it creates queue using of two pointers one for front and other for rear
-{   
-    qType q1;
-    q1.count =0;
-    q1.front=NULL;
-    q1.rear=NULL;
-    return q1;
-}
-_Bool enqueue(eleType_q ip_data, qType *q1) //it insert item to the queue
-{
-    node* newDataNode = (node*)malloc(1* sizeof(node)); //memory accocation
-    if(newDataNode==NULL)
+
+/*************isEmpty()***************/    
+ bool isEmpty(queueType q1)
+ {
+    if(q1.front == NULL) //or if s1.count == 0
+       return true;
+    else 
         return false;
-    else
-    {
-        newDataNode->data=ip_data;
-        if(q1->front==NULL)
-        {
-            q1->front=newDataNode;
-            q1->rear=newDataNode;
-            q1->front->next=NULL;
-            q1->rear->next=NULL;
-        }
-        else
-        {
-            q1->rear->next=newDataNode;
-            q1->rear=newDataNode;
-            q1->rear->next=NULL;
+ }
 
-        }
+/***************Enqueue ()***************/  
+bool enqueue(eleType ip_data, queueType *q1)
+{   
+  //Allocating memory
+  qnode *newNode =(qnode*) malloc(1*sizeof(qnode));
+  
+  if(newNode == NULL)
+    return false;
+   
+  else
+  {
+    newNode->data = ip_data;
+    newNode->next = NULL;
+         
+    //case of enqueue in an empty queue
+    if(q1->rear == NULL &&  q1->front == NULL)
+    {
+      //make rear anf ront point at same node
+       q1->front = q1->rear = newNode;
     }
+         
+    else // Case of push in  non empty stack
+    {
+      //add newnode in rear->next
+      q1->rear->next = newNode;
+      // make the new node as the rear node
+      q1->rear = newNode;
+    }
+    q1->count++;
+    return true;
+  }
 }
 
-eleType_q dequeue(qType* q1) //remove inserted item from queue and free that particular memory
- {   
-    q1->count--;
-    node* temp=q1->front;
-    q1->front=q1->front->next;
-    eleType_q poppedEle=temp->data;
-    if(q1->front==NULL)
-    {
-        q1->rear=NULL;
-    }
-    free(temp);
-    return(poppedEle);
-}
-void destroyQueue(qType*q1) //remove whole queue and free all the memories that are allocated to queue
+eleType dequeue(queueType *q1)
 {
-    while(q1->front!=NULL)
-    {
+
+   qnode *temp = q1->front;  // temperoray node
+   
+   // a. if only one eleement in stack
+   // b. if more than one element in stack
+   
+   q1->front = q1->front->next;   
+   //' this handels both cases a and b
+  
+   eleType dequeue_Ele = temp->data;
+   //q1->count--;
+   //free the first node
+   free(temp);
+   q1->count--;
+   return (dequeue_Ele);
+}
+
+/************ display()**************/  
+void displayQueue(queueType q1)
+{
+  printf("\nQueue: ");
+  qnode *temp = q1.front;
+  //printf("%d",temo->data);
+  while(temp!=NULL)
+  {
+     //printf("%d->",temp->data);
+     temp = temp->next;
+  }
+  printf("NULL\n");
+}
+
+
+void destroyQueue(queueType *q1)
+{
+  qnode *temp;     
+  while(q1->front!=NULL)  //q1->rear!=NULL && 
+     {
+	     
+        temp = q1->front;
+        q1->front = q1->front->next;
         q1->count--;
-        node *temp =q1->front;
-        q1->front=q1->front->next;
         free(temp);
-    }
-}
-
-void display(qType *q1) //display all the elements of the queue.
-{
-    node *point =q1->front;
-    
-    while(point!=NULL)
-    {
-        printf("\n %s\n",point->data->data.name);
-        point=point->next;
-    }
-    
+     }
 }
