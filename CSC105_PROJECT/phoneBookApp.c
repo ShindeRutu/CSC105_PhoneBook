@@ -32,7 +32,7 @@ int main()
 
   do
   {
-  printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACT \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> RECENT_CALLS \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6-> DELETE_CONTACT");
+  printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACT \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> RECENT_CALLS \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t 7-> DELETE_CONTACT\n\t\t\t\t\t 8->EXIT");
   printf("\nEnter your choice: \n");
   scanf("%d",&choice);
     switch (choice)
@@ -106,6 +106,13 @@ int main()
       break;
 
     case 6: //fav
+		if(!isEmpty(q)){
+
+			display(&q);
+		}
+		else{
+			printf("No favourite contacts to display\n");
+		}
       break;
 
     case 7: //delete
@@ -121,7 +128,7 @@ int main()
         if (deleteContact(tree, key) == true)
           printf("\t\t\t\t\t.....Contact deleted.... %s \n", key);
         else
-          printf(" NOT FOUND");
+          printf(" NOT FOUND\n");
       }
       else
         printf("No cantacts to delete\n");

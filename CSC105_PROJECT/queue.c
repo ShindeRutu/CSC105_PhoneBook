@@ -1,118 +1,123 @@
 /*
-AUTHOR : Dineshgawas
-PROGRAM: STACK USING LINKED LIST(ADT specification)
-DATE CREATED: SEPT 2021
-*/
+                AUTHOR : 2128_dinesh
+                PROGRAM: IMPLEMENTATION FILE for QUEUE USING LINKED LIST
+                DATE CREATED: SEPT 2021
+                DATE MODIFIED: SEPT 2021
+ */
+#include "queue.h"
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
-#include"queue.h"
 
 
-
-
-/********* cretaeQueue()  *******/
-queueType createQueue()
-{
-  queueType q;
-  q.front = NULL;
-  q.rear = NULL;
-  q.count = 0;  // intial num of node is 0
-  return q;
-}
-
-/* ==========Isfull ===========*/
-// further impro
-bool isFull(queueType q1)
-{
-  return false;   // assumption:  memory is never full // false bcz we can add as many elements as system permits, hence no need to consider this condition.  
-}
-
-/*************isEmpty()***************/    
- bool isEmpty(queueType q1)
- {
-    if(q1.front == NULL) //or if s1.count == 0
-       return true;
-    else 
-        return false;
- }
-
-/***************Enqueue ()***************/  
-bool enqueue(eleType ip_data, queueType *q1)
-{   
-  //Allocating memory
-  qnode *newNode =(qnode*) malloc(1*sizeof(qnode));
-  
-  if(newNode == NULL)
-    return false;
-   
-  else
-  {
-    newNode->data = ip_data;
-    newNode->next = NULL;
-         
-    //case of enqueue in an empty queue
-    if(q1->rear == NULL &&  q1->front == NULL)
+    eleType dequeue(queueType *s1) // It removes top element and display popped element
     {
-      //make rear anf ront point at same node
-       q1->front = q1->rear = newNode;
-    }
-         
-    else // Case of push in  non empty stack
-    {
-      //add newnode in rear->next
-      q1->rear->next = newNode;
-      // make the new node as the rear node
-      q1->rear = newNode;
-    }
-    q1->count++;
-    return true;
-  }
-}
+      s1->count--;
+      qnode *temp=s1->front;
+      s1->front=s1->front->next;
+     // s1->rear=NULL;->cond
+      //s1->rear = NULL;
+      eleType dequeued=temp->data;
+      if(s1->front==NULL){
+        s1->rear=NULL;
+      }
+      free(temp);
+      return (dequeued);
+      /*if((s1->front)==NULL)
+      return false;
+      qnode *temp=s1->front;
+      s1->front=s1->front->next;
+      if((s1->front)==NULL)
+      s1->rear = NULL;
+      s1->rear=s1->rear-1;
+      eleType dequeued=temp->data;
+      free(temp);
+      return (dequeued);*/
+    }    ///return (dequeue);
+      
+        /*s1->count--;
+        qnode *temp=s1->front;
+        //case1 stack is empty(we do not handle since it is created already)
+        //case2 non empty stack
+        //case 2a deleting only top element
+        s1->front =s1->front->next;
+         eleType dequeuedEle =temp->data;
+            free(temp);
+            return (dequeuedEle);*/
 
-eleType dequeue(queueType *q1)
-{
-
-   qnode *temp = q1->front;  // temperoray node
-   
-   // a. if only one eleement in stack
-   // b. if more than one element in stack
-   
-   q1->front = q1->front->next;   
-   //' this handels both cases a and b
-  
-   eleType dequeue_Ele = temp->data;
-   //q1->count--;
-   //free the first node
-   free(temp);
-   q1->count--;
-   return (dequeue_Ele);
-}
-
-/************ display()**************/  
-void displayQueue(queueType q1)
-{
-  printf("\nQueue: ");
-  qnode *temp = q1.front;
-  //printf("%d",temo->data);
-  while(temp!=NULL)
-  {
-     //printf("%d->",temp->data);
-     temp = temp->next;
-  }
-  printf("NULL\n");
-}
-
-
-void destroyQueue(queueType *q1)
-{
-  qnode *temp;     
-  while(q1->front!=NULL)  //q1->rear!=NULL && 
-     {
-	     
-        temp = q1->front;
-        q1->front = q1->front->next;
-        q1->count--;
+    void destroyQueue(queueType *s1) //It destroy stack and free the allocated dynamic memory
+    { 
+        while(s1->front!=NULL)
+        {s1->count--;
+        qnode *temp =s1->front;
+        s1->front =s1->front->next;
         free(temp);
-     }
+        }
+    }
+
+
+  bool enqueue(eleType ip_data ,queueType *s1){ // Adds elemens on top of the stack
+	qnode *newDataNode = (qnode *) malloc(1* sizeof(qnode)); // Allocate memory
+	if(newDataNode == NULL)
+		return false;
+	
+	else{
+		newDataNode->data = ip_data;
+		if(s1->front==NULL){
+			s1->front=newDataNode;
+			s1->rear=newDataNode;
+			s1->front->next=NULL;
+			s1->rear->next=NULL;
+		}
+		else{
+		s1->rear->next=newDataNode;
+		s1->rear=newDataNode;
+		s1->rear->next = NULL;	 
+		}	
+	
+	}	
+	
 }
+
+
+    bool isFull(queueType s1) // checks the memory of the sys is full or not
+    {
+        return false;
+    }
+    
+    bool isEmpty(queueType s1) //check is there something into the stack or not
+    {
+        if(s1.front==NULL)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    queueType createQueue() // creates the stack in Linkedlist.
+    {
+        queueType s;
+        s.count=0;
+        s.front=NULL;
+        s.rear= NULL;
+        return s;
+    }
+
+
+ void display(queueType *s1)  
+{    
+    qnode *ptr = s1->front;        
+    if(s1->front == NULL)  
+    {  
+      //return false;
+      printf("\nEmpty queue\n");  
+    }  
+    else  
+    {   printf("\nFavourite list .....\n");  
+        while(ptr != NULL)   
+        {  
+            printf("\n%s\n",ptr->data->key);  
+            ptr = ptr->next; 
+        }  
+    }  
+}  
