@@ -10,7 +10,7 @@
 #ifndef _PHONEBOOK_H
 #define _PHONEBOOK_H
 
-  typedef char keyType[20];   // fr search key
+  typedef char keyType[20];  // fr search key
    
   //to store mandatory info of the person
   struct info
@@ -73,7 +73,7 @@
   void _display_contactlist(node *root);    // inorder trav : recursive method
   
   // to delete the contact from the list
-  _Bool deleteContact(conBook *, keyType);
+  bool deleteContact(conBook *, keyType);
   node* _delete(node *, keyType, bool *success);   //recursive method
   
   // to search the contact
@@ -89,13 +89,13 @@
 
 
   // call contact 
-  node *call(node *root, keyType serkey[]);
+  node *call(node *root, keyType serkey);
 
   // import/export contact
 
   //void BST_Destroy(contacts *tree);
 
 
-  node* del(node* , keyType value);
+  node* del(node* , keyType value[]);
 
 #endif

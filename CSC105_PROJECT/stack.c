@@ -3,12 +3,12 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-    eleType peek(stackType s1) //It checks top element of stack and print the element only
+    eleTypes peek(stackType s1) //It checks top element of stack and print the element only
     {
         return s1.top->data;  //if precondition was not there then stack is empty then throw the underflow error
     }
 
-    eleType pop(stackType *s1) // It removes top element and display popped element
+    eleTypes pop(stackType *s1) // It removes top element and display popped element
     {   
         s1->count--;
         snode *temp=s1->top;
@@ -16,7 +16,7 @@
         //case2 non empty stack
         //case 2a deleting only top element
         s1->top =s1->top->next;
-         eleType poppedEle =temp->data;
+         eleTypes poppedEle =temp->data;
             free(temp);
             return (poppedEle);
     }
@@ -31,7 +31,7 @@
         }
     }
  
-    bool push(eleType ip_data, stackType *s1) // It pushes the element into the stack at the top position 
+    bool push(eleTypes ip_data, stackType *s1) // It pushes the element into the stack at the top position 
     {   //Allocating memory
         snode *newDataNode =(snode *) malloc(1* sizeof(snode));
         if(newDataNode ==NULL)
@@ -73,14 +73,14 @@
     snode *ptr = s1->top;        
      if(ptr == NULL)  
     {  
-        printf("Stack is empty\n");  
+       
     }  
     else  
     {  
-        printf("Printing Stack elements \n");  
+        printf("Showing recent contact names \n");  
         while(ptr!=NULL)  
         {  
-            printf("%s\n",ptr->data.key);  
+            printf("Recently called-- %s\n",ptr->data->key);  
             ptr = ptr->next;  
         }  
     }  

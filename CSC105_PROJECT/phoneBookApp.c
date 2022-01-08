@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "phoneBook.h"
 #include "queue.h"
+#include "stack.h"
 
 int main()
 {
@@ -29,6 +30,8 @@ int main()
 
   conBook *tree = createContactList();
   queueType q = createQueue();
+  stackType s = createStack();
+  
   
 
   do
@@ -58,9 +61,9 @@ int main()
         scanf("%d", &input.TelNumber);
         printf("\nEnter the email: \n");
         scanf("%s", input.email);
-		printf("Is this contact Favourite ?\nIf yes press 1 if No press 0 ");
-		if((scanf("%d",&input.fav))== 1)
-		{
+		printf("Is this contact Favourite ?\nIf yes press 1 if No press 0 \n");
+		scanf("%d",&input.fav);
+		if(input.fav==1){
 			input2 = input;
 			enqueue(input2,&q);
 		}
@@ -90,6 +93,12 @@ int main()
       break;
 
     case 4: //RECENT_CALLS
+			if(!isstackEmpty(s)){
+				displaystack(&s);
+			}
+			else{
+				printf("No recent calls\n\n");
+			}
       break;
 
     case 5: //search
@@ -103,14 +112,14 @@ int main()
       else
       {
         printf("Contact found\n\n\n");
-        printf("\t\t\t\t\tName: %s\n\t\t\t\t\t Phone number: %d\n\t\t\t\t\t Telphone number: %d\n\t\t\t\t\t Email: %s\n\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
+        printf("\t\t\t\t\t\tName: %s\n\t\t\t\t\t Phone number: %d\n\t\t\t\t\t Telphone number: %d\n\t\t\t\t\t Email: %s\n\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
      
 	  }
       break;
 
     case 6: //fav
 		if(!isEmpty(q)){
-
+ 
 			display(&q);
 		}
 		else{
@@ -118,35 +127,42 @@ int main()
 		}
       break;
 
-	case 7: //CALL
-		//    printf("Enter name you want to call");
-		//    scanf("%s"serKey);
-		//    call(root,serKey);
+	case 7: //call
+		printf("\n Enter the name of the person you want to call: \n");
+      	scanf("%s",searchkey);
+      	node * p =  search(tree->root, searchkey);
+      	if (p == NULL)
+      	{
+       	 	printf("Contact with this name is not found \n");
+      	}
+      	else
+      	{
+       	 	printf("Contact found\n");
+			printf("now calling......\n");
+			push(&p->data.key,&s);
+
+
+       	 	// printf("\t\t\t\t\tName: %s\n\t\t\t\t\t Phone number: %d\n\t\t\t\t\t Telphone number: %d\n\t\t\t\t\t Email: %s\n\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
+     
+	  	}
 	break;
 
     case 8: //delete contact
-      	{if (!contactlist_isEmpty(tree))
+      		{if (!contactlist_isEmpty(tree))
 
-                  {
-                   printf("Please enter name.\n");
-                    scanf("%s",dltKey);
+              {
+               printf("Please enter name.\n");
+			   scanf("%s",dltKey);
+
                     if(deleteContact(tree,dltKey)==true)
-                      printf("\n\ndata deleted successfully...");
+						printf("\n\ndata deleted successfully...");
                     else
                       printf("\n\ndata not deleted...\n");
-                  }
-                  else
-                    printf("No contacts to delete\n");
-                } break;
-		// //	while(getchar()!='\n')
+                 	}
+                 	else
+                    	printf("No contacts to delete\n");
+               		} break;
 
-		// //	printf("\n");
-        // //	continue;
-			
-		// deleteContact(tree,dltKey);
-        // //   printf("\t\t\t\t\t.....Contact deleted.... %s \n", dltKey);
-        // // else
-        // //   printf("CONTACT NOT FOUND\n");
 
     case 9: //exit
       printf("\n\t\t\t\t\tEXIT");

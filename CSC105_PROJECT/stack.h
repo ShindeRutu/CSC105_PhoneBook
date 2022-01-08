@@ -3,7 +3,7 @@
 #include "phoneBook.h"
 #ifndef STACK_H
     #define STACK_H
-    typedef info eleType;
+    typedef info* eleTypes;
     
     //DATA
     struct stack
@@ -15,20 +15,20 @@
 
     struct stack_node
     {
-        eleType data;
+        eleTypes data;
         struct stack_node *next;
 
     };
     typedef struct stack_node snode;
 
     //prototypes
-    eleType peek(stackType s1);
+    eleTypes peek(stackType s);
     //Function:      Returns top element of the stack without deleting.
     //Input:         stackType
     //Precondition:  stack is not Empty
     //Output:        Element from top of the stack
     //Postcondition: none.
-    eleType pop(stackType *s1);
+    eleTypes pop(stackType *s);
     //Function:      removes Element from the top.
     //Input:         *StackType
     //Precondition:  stack is not empty
@@ -46,7 +46,7 @@
     //Precondition:  none
     //Output:        stackType
     //Postcondition: An empty stack is created
-    _Bool push(eleType ele, stackType *s1);
+    _Bool push(eleTypes ele, stackType *s);
     //Function:      insert an element on top
     //Input:         *stackType, elementType
     //Precondition:  stack is not full
@@ -64,5 +64,5 @@
     //Precondition:  none
     //Output:        true if empty, false if not empty
     //Postcondition: none
-    void displaystack(stackType *s1);
+    void displaystack(stackType *s);
 #endif
