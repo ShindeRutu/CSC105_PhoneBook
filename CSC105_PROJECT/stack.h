@@ -1,8 +1,9 @@
 
 #include<stdbool.h>
+#include "phoneBook.h"
 #ifndef STACK_H
     #define STACK_H
-    typedef int eleType;
+    typedef info eleType;
     
     //DATA
     struct stack
@@ -18,9 +19,9 @@
         struct stack_node *next;
 
     };
-    typedef struct stack_node node;
+    typedef struct stack_node snode;
 
-//prototypes
+    //prototypes
     eleType peek(stackType s1);
     //Function:      Returns top element of the stack without deleting.
     //Input:         stackType
@@ -51,17 +52,17 @@
     //Precondition:  stack is not full
     //Output:        true if successfull, false if unsuccessfull
     //Postcondition: new element is inserted
-    _Bool isFull(stackType s);
+    _Bool isstackFull(stackType s);
     //Function:      check if stack is full
     //Input:         stackType
     //Precondition:  none
     //Output:        true if full, false if not full
     //Postcondition: none
-    _Bool isEmpty(stackType s);
+    _Bool isstackEmpty(stackType s);
     //Function:      check if stack is empty
     //Input:         stackType
     //Precondition:  none
     //Output:        true if empty, false if not empty
     //Postcondition: none
-    void display(stackType *s1);
+    void displaystack(stackType *s1);
 #endif

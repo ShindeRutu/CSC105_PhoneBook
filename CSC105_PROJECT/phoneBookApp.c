@@ -17,11 +17,11 @@ int main()
 {
 
   int choice;
- // node *root;
+  node *root;
   info input;
   info input2;
   //keyType inputData;
-  int dltKey, serKey, choice2;
+  char dltKey[20], serKey, choice2;
   char searchkey[20], key[20];
   bool status;
 
@@ -33,7 +33,7 @@ int main()
 
   do
   {
-  printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACT \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> RECENT_CALLS \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t 7-> DELETE_CONTACT\n\t\t\t\t\t 8->EXIT");
+  printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> RECENT_CALLS \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t\t 7->CALL\n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 8->EXIT");
   printf("\nEnter your choice: \n");
   scanf("%d",&choice);
     switch (choice)
@@ -104,7 +104,8 @@ int main()
       {
         printf("Contact found\n\n\n");
         printf("\t\t\t\t\tName: %s\n\t\t\t\t\t Phone number: %d\n\t\t\t\t\t Telphone number: %d\n\t\t\t\t\t Email: %s\n\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
-      }
+     
+	  }
       break;
 
     case 6: //fav
@@ -117,34 +118,43 @@ int main()
 		}
       break;
 
-    case 7: //delete
-      if (!contactlist_isEmpty(tree))
-      {
-        while (scanf("%s", key) != 1)
-        {
-          while (getchar() != '\n');
-          printf("Invalid input! Please enter a roll no of integer data type.\n");
-          printf("\n");
-          continue;
-        }
-        if (deleteContact(tree, key) == true)
-          printf("\t\t\t\t\t.....Contact deleted.... %s \n", key);
-        else
-          printf(" NOT FOUND\n");
-      }
-      else
-        printf("No cantacts to delete\n");
-      break;
+	case 7: //CALL
+		//    printf("Enter name you want to call");
+		//    scanf("%s"serKey);
+		//    call(root,serKey);
+	break;
 
-      break;
+    case 8: //delete contact
+      	{if (!contactlist_isEmpty(tree))
 
-    case 8: //exit
+                  {
+                   printf("Please enter name.\n");
+                    scanf("%s",dltKey);
+                    if(deleteContact(tree,dltKey)==true)
+                      printf("\n\ndata deleted successfully...");
+                    else
+                      printf("\n\ndata not deleted...\n");
+                  }
+                  else
+                    printf("No contacts to delete\n");
+                } break;
+		// //	while(getchar()!='\n')
+
+		// //	printf("\n");
+        // //	continue;
+			
+		// deleteContact(tree,dltKey);
+        // //   printf("\t\t\t\t\t.....Contact deleted.... %s \n", dltKey);
+        // // else
+        // //   printf("CONTACT NOT FOUND\n");
+
+    case 9: //exit
       printf("\n\t\t\t\t\tEXIT");
       break;
     default:
       printf("\n\t\t\t\t\tInvalid choice please choose between 1-7");
       break;
     }
-  } while (choice != 8);
+  } while (choice != 9);
   return 0;
 }

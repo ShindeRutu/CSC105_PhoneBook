@@ -11,7 +11,7 @@
     eleType pop(stackType *s1) // It removes top element and display popped element
     {   
         s1->count--;
-        node *temp=s1->top;
+        snode *temp=s1->top;
         //case1 stack is empty(we do not handle since it is created already)
         //case2 non empty stack
         //case 2a deleting only top element
@@ -25,7 +25,7 @@
     { 
         while(s1->top!=NULL)
         {s1->count--;
-        node *temp =s1->top;
+        snode *temp =s1->top;
         s1->top =s1->top->next;
         free(temp);
         }
@@ -33,7 +33,7 @@
  
     bool push(eleType ip_data, stackType *s1) // It pushes the element into the stack at the top position 
     {   //Allocating memory
-        node *newDataNode =(node *) malloc(1* sizeof(node));
+        snode *newDataNode =(snode *) malloc(1* sizeof(snode));
         if(newDataNode ==NULL)
             return false;
         else
@@ -46,12 +46,12 @@
         }
     }
     
-    bool isFull(stackType s1) // checks the memory of the sys is full or not
+    bool isstackFull(stackType s1) // checks the memory of the sys is full or not
     {
         return false;
     }
     
-    bool isEmpty(stackType s1) //check is there something into the stack or not
+    bool isstackEmpty(stackType s1) //check is there something into the stack or not
     {
         if(s1.top==NULL)
         {
@@ -68,9 +68,9 @@
         return s;
     }
 
- void display(stackType *s1)  
+ void displaystack(stackType *s1)  
 {    
-    node *ptr = s1->top;        
+    snode *ptr = s1->top;        
      if(ptr == NULL)  
     {  
         printf("Stack is empty\n");  
@@ -80,7 +80,7 @@
         printf("Printing Stack elements \n");  
         while(ptr!=NULL)  
         {  
-            printf("%d\n",ptr->data);  
+            printf("%s\n",ptr->data.key);  
             ptr = ptr->next;  
         }  
     }  

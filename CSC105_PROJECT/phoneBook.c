@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "phoneBook.h"
+#include "stack.h"
 
 /********** contactlist_isEmpty() ****************/
 _Bool contactlist_isEmpty(conBook *cList)
@@ -80,24 +81,7 @@ bool newContact(conBook *cList, info data)
 }
 }
 
-bool searchforinsert(node *root,keyType serKeyName[]){
 
-	 if (root==NULL)
-  {
-    return NULL;
-  }
-  else if(serKeyName < root->data.key)
-  {
-    return search(root->left,serKeyName);// recurrsion
-  }
-  else if(serKeyName > root->data.key)
-  {
-    return search(root->right,serKeyName);
-  }
-  else
-    return true;
-
-}
 
 /************* insertContact() ****************/
 node* _insert(node *root, node *newPtr)
@@ -140,13 +124,16 @@ void displayContactList(conBook *cList)
 {
   _display_contactlist(cList->root);
 }
+
+
+
 /************* deleteContact() ************/
-bool deleteContact(conBook *cList, keyType dltkey[])
+bool deleteContact(conBook *cList, keyType dltkey)
 {
   bool success;
   node *newRoot;
   newRoot = _delete(cList->root, dltkey, &success);
-  if (success)
+  if(success)
   {
     cList->root = newRoot;
     cList->count--;
@@ -155,24 +142,24 @@ bool deleteContact(conBook *cList, keyType dltkey[])
 }
 
 /************* delete() *************/
-node *_delete(node *root, keyType dltkey[], bool *success) //recursive method
+node *_delete(node *root, keyType dltkey, bool *success) //recursive method
 {
   if (root == NULL)
   {
     *success = false;
     return NULL;
   }
-  if (dltkey < root->data.key)
-  {
-    root->left = _delete(root->left, dltkey, success);
-  }
-  else if (dltkey > root->data.key)
-  {
-    root->right = _delete(root->right, dltkey, success);
-  }
-  else
-  {
-    if (root->left && root->right) // 2 children
+ 	 if(dltkey < root->data.key)
+  	{
+    	root->left = _delete(root->left, dltkey, success);
+  	}
+  	else if (dltkey > root->data.key)
+  	{
+    	root->right = _delete(root->right, dltkey, success);
+  	}
+  	else
+  	{
+    	if (root->left && root->right) // 2 children
     {
       //finding inorder predecessor for node to be deleted
       node *inorder_pre = root->left;
@@ -204,7 +191,7 @@ node *_delete(node *root, keyType dltkey[], bool *success) //recursive method
 }
 
 /********** searchContact() ***********/
-node *search(node *root, keyType serkey[])
+node *search(node *root, keyType serkey)
 {
 
   if (root == NULL)
@@ -232,13 +219,26 @@ _Bool recentCallLog(conBook *cList)
 	//incoming, outgoing and missed flag if 1 then added initially 0
 }
 
-/********* favContact() **************/
-// _Bool favContact(conBook *cList, keyType key)
+/********* callContact() **************/
+// node *call(node *, keyType)
 // {
-	
+
+//   if (root == NULL)
+//   {
+//     return NULL;
+//   }
+//   if (strcmp(root->data.key, serkey) == 0)
+//   {
+
+//     return root;
+//   }
+//   else if (strcmp(serkey, root->data.key) == -1)
+//   {
+//     return search(root->left, serkey);
+//   }
+//   else
+//   {
+//     return search(root->right, serkey);
+//   }
 // }
 
-
-/*********** impExpContact() ***********/
-
-/******** mergeContact() **************/
