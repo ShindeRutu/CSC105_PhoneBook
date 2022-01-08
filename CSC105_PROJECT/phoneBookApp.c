@@ -22,7 +22,7 @@ int main()
   info input;
   info input2;
   //keyType inputData;
-  char dltKey[20], serKey, choice2;
+  char dltKey[20], serKey, choice2,z;
   char searchkey[20], key[20];
   bool status;
 
@@ -32,11 +32,10 @@ int main()
   queueType q = createQueue();
   stackType s = createStack();
   
-  
 
   do
   {
-  printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> RECENT_CALLS \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t\t 7->CALL\n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 8->EXIT");
+  printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t\t 7-> RECENT_CALLS \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->EXIT");
   printf("\nEnter your choice: \n");
   scanf("%d",&choice);
     switch (choice)
@@ -50,30 +49,50 @@ int main()
 		
 
 		if(search(tree->root, input.key))
-		{printf("Name already present....please select another name \n");}
-
-
-		//if(root.key == input.key)){printf("double");}
+			{
+				printf("Name already present....please select another name \n");
+			}
 		else{
+
 		printf("\nEnter the Phone number: \n");
-        scanf("%d", &input.mobNumber);
+		
+        while(scanf("%d%c", &input.mobNumber,&z)!=2||z!='\n')
+		{	
+			while(getchar()!='\n')
+			printf("Please enter numbers\n");
+			continue;
+		}
         printf("\nEnter the telephone number: \n");
-        scanf("%d", &input.TelNumber);
-        printf("\nEnter the email: \n");
+
+		 while(scanf("%d%c", &input.TelNumber,&z)!=2||z!='\n')
+		{
+			while(getchar()!='\n')
+			printf("Please enter numbers\n");
+			continue;
+		}
+
+        printf("\nEnter the email-id: \n");
         scanf("%s", input.email);
-		printf("Is this contact Favourite ?\nIf yes press 1 if No press 0 \n");
+
+
+		printf("\nIs this contact Favourite ?\nIf yes press 1 if No press 0 \n");
 		scanf("%d",&input.fav);
-		if(input.fav==1){
+
+	
+		printf("lol");
+			if(input.fav==1){
 			input2 = input;
 			enqueue(input2,&q);
+
 		}
 		
         if (newContact(tree, input))
         {
           printf("\n contact added \n");
 
-		}        
 		}
+		}        
+		
       
       break;
 
@@ -92,13 +111,21 @@ int main()
 
       break;
 
-    case 4: //RECENT_CALLS
-			if(!isstackEmpty(s)){
-				displaystack(&s);
-			}
-			else{
-				printf("No recent calls\n\n");
-			}
+    case 4: //CALL
+					printf("\n Enter the name of the person you want to call: \n");
+      	scanf("%s",searchkey);
+      	node * p =  search(tree->root, searchkey);
+      	if (p == NULL)
+      	{
+       	 	printf("Contact with this name is not found \n");
+      	}
+      	else
+      	{
+       	 	printf("Contact found\n");
+			printf("now calling......\n");
+			push(&p->data.key,&s);
+     
+	  	}
       break;
 
     case 5: //search
@@ -127,24 +154,15 @@ int main()
 		}
       break;
 
-	case 7: //call
-		printf("\n Enter the name of the person you want to call: \n");
-      	scanf("%s",searchkey);
-      	node * p =  search(tree->root, searchkey);
-      	if (p == NULL)
-      	{
-       	 	printf("Contact with this name is not found \n");
-      	}
-      	else
-      	{
-       	 	printf("Contact found\n");
-			printf("now calling......\n");
-			push(&p->data.key,&s);
+	case 7: //display recent calls
+		
+			if(!isstackEmpty(s)){
+				displaystack(&s);
+			}
+			else{
+				printf("No recent calls\n\n");
+			}
 
-
-       	 	// printf("\t\t\t\t\tName: %s\n\t\t\t\t\t Phone number: %d\n\t\t\t\t\t Telphone number: %d\n\t\t\t\t\t Email: %s\n\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
-     
-	  	}
 	break;
 
     case 8: //delete contact
