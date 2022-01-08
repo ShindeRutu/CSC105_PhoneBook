@@ -116,7 +116,11 @@
     {   printf("\nFavourite list .....\n");  
         while(ptr != NULL)   
         {  
-            printf("\n%s\n",ptr->data.key);  
+            printf("\n%s\n",ptr->data.key);
+			printf("%d",ptr->data.mobNumber);
+			printf("%d",ptr->data.TelNumber); 
+			printf("%s",ptr->data.email);  
+
             ptr = ptr->next; 
         }  
     }  
