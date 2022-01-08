@@ -90,11 +90,11 @@ node* _insert(node *root, node *newPtr)
   if(!root){
   		return newPtr;
   	}
-  	if(strcmp(newPtr->data.key, root->data.key)==-1){
+  	if(strcmp(newPtr->data.key, root->data.key)<0){
 
   		root->left = _insert(root->left, newPtr);
   	}
-  	else if(strcmp(newPtr->data.key, root->data.key)==1)
+  	else if(strcmp(newPtr->data.key, root->data.key)>0)
 	{
   		root->right = _insert(root->right, newPtr);
   	}
@@ -149,11 +149,11 @@ node *_delete(node *root, keyType dltkey, bool *success) //recursive method
     *success = false;
     return NULL;
   }
- 	 if(strcmp(dltkey, root->data.key) == -1 )
+ 	 if(strcmp(dltkey, root->data.key) <0 )
   	{
     	root->left = _delete(root->left, dltkey, success);
   	}
-  	else if (strcmp(dltkey, root->data.key) == 1 )
+  	else if (strcmp(dltkey, root->data.key) >0 )
   	{
     	root->right = _delete(root->right, dltkey, success);
   	}
@@ -202,7 +202,7 @@ node *search(node *root, keyType serkey)
   {
     return root;
   }
-  else if (strcmp(serkey, root->data.key) == (-1))
+  else if (strcmp(serkey, root->data.key) <0)
   {
     return search(root->left, serkey);
   }
