@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 #include "phoneBook.h"
 #include "queue.h"
 #include "stack.h"
@@ -22,7 +23,6 @@ int main()
   info input;
   info input2;
   info input3;
-  //keyType inputData;
   char dltKey[20], serKey, choice2, z;
   char searchkey[20], key[20];
   long long int newno, newtelno;
@@ -30,6 +30,8 @@ int main()
   bool status;
   FILE *rd;
   FILE *wr;
+  time_t startt, endt;
+  int difft, hr, min, sec;
 
   printf("\n\t\t\t\t\t***********   PHONE-BOOK   **********");
 
@@ -145,8 +147,6 @@ int main()
           printf("please select from 1-2-3\n");
           break;
         }
-
-        //	b->data.mobNumber = 1234;
       }
 
       break;
@@ -162,8 +162,17 @@ int main()
       else
       {
         printf("Contact found\n");
-        printf("now calling......\n");
+        time(&startt);
+        printf("Calling...... %s\n on call with %s... press ENTER to hang\n", p->data.key, p->data.key);
         push(&p->data, &s);
+        getchar();
+        getchar();
+        time(&endt);
+        difft = difftime(endt, startt);
+        hr = difft / 3600;
+        min = ((difft - (hr * 3600)) / 60);
+        sec = difft - ((hr * 3600) + (min * 60));
+        printf("Call duration for this call was %d hr %d min %d sec\n", hr, min, sec);
       }
       break;
 

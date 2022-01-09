@@ -1,5 +1,5 @@
 /*
-    Authors : 1) Rutu Shinde 
+    Authors : 1) Rutu Shinde  < ........left........ >
               2) Suraj Pandey
               3) Dinesh Gawas
     Program for : PhoneBook
@@ -210,29 +210,7 @@ _Bool recentCallLog(conBook *cList)
   //incoming, outgoing and missed flag if 1 then added initially 0
 }
 
-/********* callContact() **************/
-// node *call(node *, keyType)
-// {
-
-//   if (root == NULL)
-//   {
-//     return NULL;
-//   }
-//   if (strcmp(root->data.key, serkey) == 0)
-//   {
-
-//     return root;
-//   }
-//   else if (strcmp(serkey, root->data.key) == -1)
-//   {
-//     return search(root->left, serkey);
-//   }
-//   else
-//   {
-//     return search(root->right, serkey);
-//   }
-// }
-
+/*************** ExportContactList() **************/
 void _Export_contactlist(node *root, FILE *wr) // inorder trravel : recursive method
 {
   if (root != NULL)
@@ -243,7 +221,6 @@ void _Export_contactlist(node *root, FILE *wr) // inorder trravel : recursive me
     fprintf(wr, "\n%lld", root->data.TelNumber);
     fprintf(wr, "\n%s", root->data.email);
     fprintf(wr, "\n%d", root->data.fav);
-    //printf("Name: %s\n Phone number: %d \n Telphone number: %d\n Email: %s \n\n", , root->data.mobNumber, root->data.TelNumber, root->data.email);
     _Export_contactlist(root->right, wr);
   }
   else
