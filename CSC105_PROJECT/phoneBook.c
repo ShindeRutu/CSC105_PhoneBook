@@ -95,7 +95,7 @@ node *_insert(node *root, node *newPtr)
   }
   else
   {
-    printf("Name already present....please select another name");
+    printf("Name already present....please select another name\n");
     return NULL;
   }
   return root;
