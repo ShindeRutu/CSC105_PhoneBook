@@ -17,7 +17,7 @@
 int main()
 {
 
-  int choice;
+  int choice,ip2;
   node *root;
   info input;
   info input2;
@@ -39,7 +39,7 @@ int main()
 
   do
   {
-    printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t\t 7-> RECENT_CALLS \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->IMPORT/EXPORT \n\t\t\t\t\t\t 10->EXIT");
+    printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t\t 7-> RECENT_CALLS \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->IMPORT/EXPORT CONTACTS\n\t\t\t\t\t\t 10->EXIT");
     printf("\nEnter your choice: \n");
     scanf("%d", &choice);
     switch (choice)
@@ -163,6 +163,11 @@ int main()
         printf("Contact found\n");
         printf("now calling......\n");
         push(&p->data.key, &s);
+        do
+        {
+          
+        } while (ip2);
+        
       }
       break;
 
