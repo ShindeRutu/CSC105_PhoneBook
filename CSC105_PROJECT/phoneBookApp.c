@@ -17,7 +17,7 @@
 int main()
 {
 
-  int choice,ip2;
+  int choice, ip2;
   node *root;
   info input;
   info input2;
@@ -25,13 +25,13 @@ int main()
   //keyType inputData;
   char dltKey[20], serKey, choice2, z;
   char searchkey[20], key[20];
-  int newno,newtelno;
+  long long int newno, newtelno;
   char newemail[20];
   bool status;
   FILE *rd;
   FILE *wr;
 
-  printf("\n\t\t\t\t\t***********   PHONE-BOOK   **********\n\n");
+  printf("\n\t\t\t\t\t***********   PHONE-BOOK   **********");
 
   conBook *tree = createContactList();
   queueType q = createQueue();
@@ -39,7 +39,7 @@ int main()
 
   do
   {
-    printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t\t 7-> RECENT_CALLS \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->IMPORT/EXPORT CONTACTS\n\t\t\t\t\t\t 10->EXIT");
+    printf("\n\n\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAVOURITES LIST\n\t\t\t\t\t\t 7-> CALL LOG \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->IMPORT/EXPORT CONTACTS\n\t\t\t\t\t\t 10->EXIT");
     printf("\nEnter your choice: \n");
     scanf("%d", &choice);
     switch (choice)
@@ -59,7 +59,7 @@ int main()
 
         printf("\nEnter the Phone number: \n");
 
-        while (scanf("%d%c", &input.mobNumber, &z) != 2 || z != '\n')
+        while (scanf("%lld%c", &input.mobNumber, &z) != 2 || z != '\n')
         {
           while (getchar() != '\n')
             printf("Please enter numbers\n");
@@ -67,7 +67,7 @@ int main()
         }
         printf("\nEnter the telephone number: \n");
 
-        while (scanf("%d%c", &input.TelNumber, &z) != 2 || z != '\n')
+        while (scanf("%lld%c", &input.TelNumber, &z) != 2 || z != '\n')
         {
           while (getchar() != '\n')
             printf("Please enter numbers\n");
@@ -106,47 +106,48 @@ int main()
       break;
 
     case 3: //EDIT_CONTACT
-		printf("\n Enter the name of the person you want to edit: \n");
-      	scanf("%s",searchkey);
-      	node * b =  search(tree->root, searchkey);
-      	if (b == NULL)
-      	{
-       	 	printf("Contact with this name is not found \n");
-      	}
-      	else
-      	{ printf("What do you want to edit? \n");
-		 printf("1->Change mobile number\n2->Change telephone number\n3->Change email id\n");
-		scanf("%d\n",&choice2);
-		 switch(choice2){
+      printf("\n Enter the name of the person you want to edit: \n");
+      scanf("%s", searchkey);
+      node *b = search(tree->root, searchkey);
+      if (b == NULL)
+      {
+        printf("Contact with this name is not found \n");
+      }
+      else
+      {
+        printf("What do you want to edit? \n");
+        printf("1->Change mobile number\n2->Change telephone number\n3->Change email id\n\t");
+        scanf("%d", &choice2);
+        switch (choice2)
+        {
 
-			 case 1:
-			 	printf("Enter new mobile number\n\n");
-				 scanf("%d",&newno);
-				 b->data.mobNumber = newno;
+        case 1:
+          printf("Enter new mobile number\n\n");
+          scanf("%lld", &newno);
+          b->data.mobNumber = newno;
 
-			 break;
+          break;
 
-			 case 2:
-			 	printf("Enter new Telephone number\n\n");
-				  scanf("%d",&newtelno);
-				b->data.TelNumber = newtelno;
-			 break;
+        case 2:
+          printf("Enter new Telephone number\n\n");
+          scanf("%lld", &newtelno);
+          b->data.TelNumber = newtelno;
+          break;
 
-			 case 3:
-			 	printf("Enter new Email id\n\n");
-				scanf("%s",newemail);
-				b->data.email - newemail;
-				
-			 break;
+        case 3:
+          printf("Enter new Email id\n\n");
+          scanf("%s", newemail);
+          b->data.email - newemail;
 
-			 default:
-			 	printf("please select from 1-2-3\n");
-			break;
+          break;
 
-		 }
+        default:
+          printf("please select from 1-2-3\n");
+          break;
+        }
 
-	//	b->data.mobNumber = 1234;
-		}
+        //	b->data.mobNumber = 1234;
+      }
 
       break;
 
@@ -162,12 +163,7 @@ int main()
       {
         printf("Contact found\n");
         printf("now calling......\n");
-        push(&p->data.key, &s);
-        do
-        {
-          
-        } while (ip2);
-        
+        push(&p->data, &s);
       }
       break;
 
@@ -182,7 +178,7 @@ int main()
       else
       {
         printf("Contact found\n\n\n");
-        printf("\t\t\t\t\t\tName: %s\n\t\t\t\t\t Phone number: %d\n\t\t\t\t\t Telphone number: %d\n\t\t\t\t\t Email: %s\n\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
+        printf("\t\t\t\t\t\tName: %s\n\t\t\t\t\t Phone number: %lld\n\t\t\t\t\t Telphone number: %lld\n\t\t\t\t\t Email: %s\n\n", n->data.key, n->data.mobNumber, n->data.TelNumber, n->data.email);
       }
       break;
 
@@ -232,12 +228,13 @@ int main()
     case 9: // Import/Export contacts
     {
       int ip;
-      printf("Do you want to import or export contacts\n 1) Import from a file\n 2) Export to a file");
+      printf("Do you want to import or export contacts\n 1) Import from a file\n 2) Export to a file\n\t");
       scanf("%d", &ip);
       switch (ip)
       {
       case 1:
       {
+
         char file[20];
         printf("Enter the file name you want to import contacts from: ");
 
@@ -245,21 +242,22 @@ int main()
         rd = fopen(file, "r");
         if (rd == NULL)
         {
-          printf("\n%s\" File NOT FOUND!", file);
+          printf("\n\t%s File NOT FOUND!\n", file);
         }
         char c;
-        if (c = (fgetc(rd)) != 'f')
+        if (c = (fgetc(rd)) != ':')
         {
-          printf("This is not a valid file, please choose a file which has been exportd from this system");
+          printf("This is not a valid file, please choose a file which has been exportd from this system\n");
           break;
         }
 
         while (c = (fgetc(rd)) != EOF)
         {
           fscanf(rd, "%s", &input3.key);
-          fscanf(rd, "%d", &input3.mobNumber);
-          fscanf(rd, "%d", &input3.TelNumber);
+          fscanf(rd, "%lld", &input3.mobNumber);
+          fscanf(rd, "%lld", &input3.TelNumber);
           fscanf(rd, "%s", &input3.email);
+          fscanf(rd, "%d", &input3.fav);
           if (newContact(tree, input3))
           {
           }
@@ -269,6 +267,7 @@ int main()
           }
         }
         fclose(rd);
+        printf("******* Contact(s) imported from file %s\n", file);
       }
       break;
       case 2:
@@ -281,9 +280,12 @@ int main()
         }
 
         printf("Enter the name of the file you want to export contact to : ");
-
         scanf("%s", &file2);
-       Export(tree, file2);
+        FILE *ww = fopen(file2, "w");
+        // fprintf(ww, "done");
+        Export(tree, ww);
+        fclose(ww);
+        printf("*********Contact(s) exported to file %s *********\n", file2);
       }
       break;
       default:
@@ -296,7 +298,7 @@ int main()
       printf("\n\t\t\t\t\tEXIT");
       break;
     default:
-      printf("\n\t\t\t\t\tInvalid choice please choose between 1-7");
+      printf("\n\t\t\t\t\tInvalid choice please choose between 1-10");
       break;
     }
   } while (choice != 10);

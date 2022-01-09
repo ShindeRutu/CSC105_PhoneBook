@@ -14,8 +14,6 @@
 #include "phoneBook.h"
 #include "stack.h"
 
-FILE *wr;
-
 /********** contactlist_isEmpty() ****************/
 _Bool contactlist_isEmpty(conBook *cList)
 {
@@ -70,11 +68,6 @@ bool newContact(conBook *cList, info data)
       }
       else
       {
-        //   bool status = _insert(cList->root, new_ptr);
-        //   if (!status)
-        //   {
-        //     return false;
-        //   }
         _insert(cList->root, new_ptr);
       }
       cList->count++;
@@ -115,7 +108,7 @@ void _display_contactlist(node *root) // inorder trravel : recursive method
   {
     _display_contactlist(root->left); //inorder
     //_print(root->data.key);
-    printf("Name: %s\n Phone number: %d \n Telphone number: %d\n Email: %s \n\n", root->data.key, root->data.mobNumber, root->data.TelNumber, root->data.email);
+    printf("Name: %s\n Phone number: %lld \n Telphone number: %lld\n Email: %s \n\n", root->data.key, root->data.mobNumber, root->data.TelNumber, root->data.email);
     _display_contactlist(root->right);
   }
 }
@@ -245,22 +238,21 @@ void _Export_contactlist(node *root, FILE *wr) // inorder trravel : recursive me
   if (root != NULL)
   {
     _Export_contactlist(root->left, wr); //inorder
-    fprintf(wr, "%s\n", root->data.key);
-    fprintf(wr, "%d\n", root->data.mobNumber);
-    fprintf(wr, "%d\n", root->data.TelNumber);
-    fprintf(wr, "%s\n", root->data.email);
+    fprintf(wr, "\n%s", root->data.key);
+    fprintf(wr, "\n%lld", root->data.mobNumber);
+    fprintf(wr, "\n%lld", root->data.TelNumber);
+    fprintf(wr, "\n%s", root->data.email);
+    fprintf(wr, "\n%d", root->data.fav);
     //printf("Name: %s\n Phone number: %d \n Telphone number: %d\n Email: %s \n\n", , root->data.mobNumber, root->data.TelNumber, root->data.email);
     _Export_contactlist(root->right, wr);
   }
   else
-  return;
+    return;
 }
 
-/*************** displayContactKList() **************/
-void Export(conBook *cList, char file2[])
+/*************** ExportContactList() **************/
+void Export(conBook *cList, FILE *wr)
 {
-  wr = fopen(file2, "w");
-  
-  fprintf(wr, "f");
+  fprintf(wr, ":");
   _Export_contactlist(cList->root, wr);
 }
