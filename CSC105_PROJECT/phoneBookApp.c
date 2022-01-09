@@ -25,6 +25,8 @@ int main()
   //keyType inputData;
   char dltKey[20], serKey, choice2, z;
   char searchkey[20], key[20];
+  int newno,newtelno;
+  char newemail[20];
   bool status;
   FILE *rd;
   FILE *wr;
@@ -37,7 +39,7 @@ int main()
 
   do
   {
-    printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t\t 7-> RECENT_CALLS \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->EXIT");
+    printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAV\n\t\t\t\t\t\t 7-> RECENT_CALLS \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->IMPORT/EXPORT \n\t\t\t\t\t\t 10->EXIT");
     printf("\nEnter your choice: \n");
     scanf("%d", &choice);
     switch (choice)
@@ -78,7 +80,6 @@ int main()
         printf("\nIs this contact Favourite ?\nIf yes press 1 if No press 0 \n");
         scanf("%d", &input.fav);
 
-        printf("lol");
         if (input.fav == 1)
         {
           input2 = input;
@@ -105,6 +106,47 @@ int main()
       break;
 
     case 3: //EDIT_CONTACT
+		printf("\n Enter the name of the person you want to edit: \n");
+      	scanf("%s",searchkey);
+      	node * b =  search(tree->root, searchkey);
+      	if (b == NULL)
+      	{
+       	 	printf("Contact with this name is not found \n");
+      	}
+      	else
+      	{ printf("What do you want to edit? \n");
+		 printf("1->Change mobile number\n2->Change telephone number\n3->Change email id\n");
+		scanf("%d\n",&choice2);
+		 switch(choice2){
+
+			 case 1:
+			 	printf("Enter new mobile number\n\n");
+				 scanf("%d",&newno);
+				 b->data.mobNumber = newno;
+
+			 break;
+
+			 case 2:
+			 	printf("Enter new Telephone number\n\n");
+				  scanf("%d",&newtelno);
+				b->data.TelNumber = newtelno;
+			 break;
+
+			 case 3:
+			 	printf("Enter new Email id\n\n");
+				scanf("%s",newemail);
+				b->data.email - newemail;
+				
+			 break;
+
+			 default:
+			 	printf("please select from 1-2-3\n");
+			break;
+
+		 }
+
+	//	b->data.mobNumber = 1234;
+		}
 
       break;
 
