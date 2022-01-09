@@ -1,4 +1,4 @@
-	/*
+/*
     Authors : 1) Rutu Shinde 
               2) Suraj Pandey
               3) Dinesh Gawas
@@ -13,6 +13,8 @@
 #include <string.h>
 #include "phoneBook.h"
 #include "stack.h"
+
+FILE *wr;
 
 /********** contactlist_isEmpty() ****************/
 _Bool contactlist_isEmpty(conBook *cList)
@@ -45,67 +47,66 @@ conBook *createContactList()
 /*********** newContact() ****************/
 bool newContact(conBook *cList, info data)
 {
-	
-	{
-  node *new_ptr;
-  new_ptr = (node *)malloc(sizeof(node));
 
-  if (!new_ptr)
   {
+    node *new_ptr;
+    new_ptr = (node *)malloc(sizeof(node));
 
-    return false;
-  }
-  else
-  {
-
-    new_ptr->left = new_ptr->right = NULL;
-    new_ptr->data = data;
-
-    if (cList->root == NULL)
+    if (!new_ptr)
     {
 
-      cList->root = new_ptr;
+      return false;
     }
     else
     {
-    //   bool status = _insert(cList->root, new_ptr);
-    //   if (!status)
-    //   {
-    //     return false;
-    //   }
-    _insert(cList->root, new_ptr);
+
+      new_ptr->left = new_ptr->right = NULL;
+      new_ptr->data = data;
+
+      if (cList->root == NULL)
+      {
+
+        cList->root = new_ptr;
+      }
+      else
+      {
+        //   bool status = _insert(cList->root, new_ptr);
+        //   if (!status)
+        //   {
+        //     return false;
+        //   }
+        _insert(cList->root, new_ptr);
+      }
+      cList->count++;
+      return true;
     }
-    cList->count++;
-    return true;
   }
 }
-}
-
-
 
 /************* insertContact() ****************/
-node* _insert(node *root, node *newPtr)
+node *_insert(node *root, node *newPtr)
 {
 
-  if(!root){
-  		return newPtr;
-  	}
-  	if(strcmp(newPtr->data.key, root->data.key)<0){
+  if (!root)
+  {
+    return newPtr;
+  }
+  if (strcmp(newPtr->data.key, root->data.key) < 0)
+  {
 
-  		root->left = _insert(root->left, newPtr);
-  	}
-  	else if(strcmp(newPtr->data.key, root->data.key)>0)
-	{
-  		root->right = _insert(root->right, newPtr);
-  	}
-	else
-	{
-		printf("Name already present....please select another name");
-		return NULL;
-	}
-  	return root;
+    root->left = _insert(root->left, newPtr);
+  }
+  else if (strcmp(newPtr->data.key, root->data.key) > 0)
+  {
+    root->right = _insert(root->right, newPtr);
+  }
+  else
+  {
+    printf("Name already present....please select another name");
+    return NULL;
+  }
+  return root;
 }
-
 
 /*************** display contact()***************/
 void _display_contactlist(node *root) // inorder trravel : recursive method
@@ -125,15 +126,13 @@ void displayContactList(conBook *cList)
   _display_contactlist(cList->root);
 }
 
-
-
 /************* deleteContact() ************/
 bool deleteContact(conBook *cList, keyType dltkey)
 {
   bool success;
   node *newRoot;
   newRoot = _delete(cList->root, dltkey, &success);
-  if(success)
+  if (success)
   {
     cList->root = newRoot;
     cList->count--;
@@ -149,17 +148,17 @@ node *_delete(node *root, keyType dltkey, bool *success) //recursive method
     *success = false;
     return NULL;
   }
- 	 if(strcmp(dltkey, root->data.key) <0 )
-  	{
-    	root->left = _delete(root->left, dltkey, success);
-  	}
-  	else if (strcmp(dltkey, root->data.key) >0 )
-  	{
-    	root->right = _delete(root->right, dltkey, success);
-  	}
-  	else
-  	{
-    	if (root->left && root->right) // 2 children
+  if (strcmp(dltkey, root->data.key) < 0)
+  {
+    root->left = _delete(root->left, dltkey, success);
+  }
+  else if (strcmp(dltkey, root->data.key) > 0)
+  {
+    root->right = _delete(root->right, dltkey, success);
+  }
+  else
+  {
+    if (root->left && root->right) // 2 children
     {
       //finding inorder predecessor for node to be deleted
       node *inorder_pre = root->left;
@@ -202,7 +201,7 @@ node *search(node *root, keyType serkey)
   {
     return root;
   }
-  else if (strcmp(serkey, root->data.key) <0)
+  else if (strcmp(serkey, root->data.key) < 0)
   {
     return search(root->left, serkey);
   }
@@ -212,11 +211,10 @@ node *search(node *root, keyType serkey)
   }
 }
 
-
 /********* recentCallLog() ************/
 _Bool recentCallLog(conBook *cList)
 {
-	//incoming, outgoing and missed flag if 1 then added initially 0
+  //incoming, outgoing and missed flag if 1 then added initially 0
 }
 
 /********* callContact() **************/
@@ -242,3 +240,27 @@ _Bool recentCallLog(conBook *cList)
 //   }
 // }
 
+void _Export_contactlist(node *root, FILE *wr) // inorder trravel : recursive method
+{
+  if (root != NULL)
+  {
+    _Export_contactlist(root->left, wr); //inorder
+    fprintf(wr, "%s\n", root->data.key);
+    fprintf(wr, "%d\n", root->data.mobNumber);
+    fprintf(wr, "%d\n", root->data.TelNumber);
+    fprintf(wr, "%s\n", root->data.email);
+    //printf("Name: %s\n Phone number: %d \n Telphone number: %d\n Email: %s \n\n", , root->data.mobNumber, root->data.TelNumber, root->data.email);
+    _Export_contactlist(root->right, wr);
+  }
+  else
+  return;
+}
+
+/*************** displayContactKList() **************/
+void Export(conBook *cList, char file2[])
+{
+  wr = fopen(file2, "w");
+  
+  fprintf(wr, "f");
+  _Export_contactlist(cList->root, wr);
+}

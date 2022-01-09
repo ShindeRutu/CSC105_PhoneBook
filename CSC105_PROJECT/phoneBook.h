@@ -92,7 +92,7 @@
   node *call(node *root, keyType serkey);
 
   // import/export contact
-
+void Export(conBook *cList, char file2[]);
   //void BST_Destroy(contacts *tree);
 
 
