@@ -48,7 +48,7 @@ int main()
 
       printf("\nEnter the details to be added:\n");
       printf("\nEnter the name:\n");
-      scanf(" %[^\n]s", input.key); //it searches first if name present or not
+      scanf(" %s", input.key); //it searches first if name present or not
 
       if (search(tree->root, input.key))
       {
@@ -153,7 +153,7 @@ int main()
 
     case 4: //CALL
       printf("\n Enter the name of the person you want to call: \n");
-      scanf("%s", searchkey);
+      scanf("%[^\n]s", searchkey);
       node *p = search(tree->root, searchkey);
       if (p == NULL)
       {
@@ -169,7 +169,7 @@ int main()
 
     case 5: //search
       printf("\n Enter the name of the person you want to search: \n");
-      scanf("%s", searchkey);
+      scanf("%[^\n]s", searchkey);
       node *n = search(tree->root, searchkey);
       if (n == NULL)
       {
@@ -213,7 +213,7 @@ int main()
 
       {
         printf("Please enter name.\n");
-        scanf("%s", dltKey);
+        scanf("%[^\n]s", dltKey);
 
         if (deleteContact(tree, dltKey) == true)
           printf("\n\ndata deleted successfully...");
@@ -236,7 +236,7 @@ int main()
       {
 
         char file[20];
-        printf("Enter the file name you want to import contacts from: ");
+        printf("Enter the file name you want to import contacts from: \n");
 
         scanf("%s", &file);
         rd = fopen(file, "r");
@@ -253,7 +253,7 @@ int main()
 
         while (c = (fgetc(rd)) != EOF)
         {
-          fscanf(rd, "%s", &input3.key);
+          fscanf(rd, "%[^\n]s", &input3.key);
           fscanf(rd, "%lld", &input3.mobNumber);
           fscanf(rd, "%lld", &input3.TelNumber);
           fscanf(rd, "%s", &input3.email);

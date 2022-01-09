@@ -78,11 +78,11 @@
     else  
     {  
         printf("Showing recent contact names \n");  
-        printf("Recently called--\n");
+        printf("Recently called--\n\n");
         while(ptr!=NULL)  
         {  
-            printf("\t %s\n",ptr->data->key);  
-            printf("\t    %d\n",ptr->data->mobNumber);  
+            printf("\t %s  -  ",ptr->data->key);  
+            printf("\t    %||d\n",ptr->data->mobNumber);  
             ptr = ptr->next;  
         }  
     }  
