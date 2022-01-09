@@ -258,6 +258,11 @@ int main()
           fscanf(rd, "%lld", &input3.TelNumber);
           fscanf(rd, "%s", &input3.email);
           fscanf(rd, "%d", &input3.fav);
+          if (input3.fav == 1)
+          {
+            input2 = input;
+            enqueue(input3, &q);
+          }
           if (newContact(tree, input3))
           {
           }
@@ -267,7 +272,7 @@ int main()
           }
         }
         fclose(rd);
-        printf("******* Contact(s) imported from file %s\n", file);
+        printf("********* Contact(s) imported from file %s *********\n", file);
       }
       break;
       case 2:
