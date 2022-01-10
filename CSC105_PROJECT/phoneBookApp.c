@@ -33,7 +33,7 @@ int main()
   time_t startt, endt;
   int difft, hr, min, sec;
 
-  printf("\n\t\t\t\t\t***********   PHONE-BOOK   **********");
+  printf("\n\t\t\t\t\t***********   PHONE-BOOK   **********\n\n");
 
   conBook *tree = createContactList();
   queueType q = createQueue();
@@ -41,7 +41,10 @@ int main()
 
   do
   {
-    printf("\n\n\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAVOURITES LIST\n\t\t\t\t\t\t 7-> CALL LOG \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->IMPORT/EXPORT CONTACTS\n\t\t\t\t\t\t 10->EXIT");
+	  printf("------------------------------------------------------------------------------------------------\n");
+    printf("\t\t\t\t\t\t 1-> ADD A CONTACT  \n\t\t\t\t\t\t 2-> SHOW_CONTACTS \n\t\t\t\t\t\t 3-> EDIT_CONTACT \n\t\t\t\t\t\t 4-> CALL \n\t\t\t\t\t\t 5-> SEARCH \n\t\t\t\t\t\t 6->FAVOURITES LIST\n\t\t\t\t\t\t 7-> CALL LOG \n\t\t\t\t\t\t 8-> DELETE_CONTACT\n\t\t\t\t\t\t 9->IMPORT/EXPORT CONTACTS\n\t\t\t\t\t\t 10->EXIT\n");
+
+	printf("------------------------------------------------------------------------------------------------\n");
     printf("\nEnter your choice: \n");
     scanf("%d", &choice);
     switch (choice)
@@ -50,7 +53,7 @@ int main()
 
       printf("\nEnter the details to be added:\n");
       printf("\nEnter the name:\n");
-      scanf(" %s", input.key); //it searches first if name present or not
+      scanf(" %[^\n]s", input.key); //it searches first if name present or not
 
       if (search(tree->root, input.key))
       {
@@ -119,7 +122,7 @@ int main()
       {
         printf("What do you want to edit? \n");
         printf("1->Change mobile number\n2->Change telephone number\n3->Change email id\n\t");
-        scanf("%d", &choice2);
+        scanf("%c", &choice2);
         switch (choice2)
         {
 
@@ -247,7 +250,7 @@ int main()
         char file[20];
         printf("Enter the file name you want to import contacts from: \n");
 
-        scanf("%s", &file);
+        scanf("%s", &file[20]);
         rd = fopen(file, "r");
         if (rd == NULL)
         {
@@ -262,10 +265,10 @@ int main()
 
         while (c = (fgetc(rd)) != EOF)
         {
-          fscanf(rd, "%[^\n]s", &input3.key);
+          fscanf(rd, "%[^\n]s", &input3.key[30]);
           fscanf(rd, "%lld", &input3.mobNumber);
           fscanf(rd, "%lld", &input3.TelNumber);
-          fscanf(rd, "%s", &input3.email);
+          fscanf(rd, "%s", &input3.email[40]);
           fscanf(rd, "%d", &input3.fav);
           if (input3.fav == 1)
           {
@@ -280,7 +283,7 @@ int main()
             printf("can't import %s", input3.key);
           }
         }
-        fclose(rd);
+        fclose(rd); 
         printf("********* Contact(s) imported from file %s *********\n", file);
       }
       break;
@@ -294,7 +297,7 @@ int main()
         }
 
         printf("Enter the name of the file you want to export contact to : ");
-        scanf("%s", &file2);
+        scanf("%s", &file2[30]);
         FILE *ww = fopen(file2, "w");
         // fprintf(ww, "done");
         Export(tree, ww);
