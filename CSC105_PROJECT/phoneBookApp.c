@@ -112,7 +112,7 @@ int main()
 
     case 3: //EDIT_CONTACT
       printf("\n Enter the name of the person you want to edit: \n");
-      scanf("%s", searchkey);
+      scanf("%[^\n]s", searchkey);
       node *b = search(tree->root, searchkey);
       if (b == NULL)
       {
@@ -297,7 +297,7 @@ int main()
         }
 
         printf("Enter the name of the file you want to export contact to : ");
-        scanf("%s", &file2[30]);
+        scanf("%[^\n]s", &file2[30]);
         FILE *ww = fopen(file2, "w");
         // fprintf(ww, "done");
         Export(tree, ww);
