@@ -82,7 +82,7 @@ void displaystack(stackType *s1)
         while (ptr != NULL)
         {
             printf("\t %s\n", ptr->data->key);
-            printf("\t    %d\n", ptr->data->mobNumber);
+            printf("\t %lld\n", ptr->data->mobNumber);
             ptr = ptr->next;
         }
     }

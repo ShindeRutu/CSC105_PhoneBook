@@ -98,8 +98,8 @@ void display(queueType *s1)
         while (ptr != NULL)
         {
             printf("\nName - %s\n", ptr->data.key);
-            printf("Mobile number - %d\n", ptr->data.mobNumber);
-            printf("Tel number - %d\n", ptr->data.TelNumber);
+            printf("Mobile number - %lld\n", ptr->data.mobNumber);
+            printf("Tel number - %lld\n", ptr->data.TelNumber);
             printf("E mail - %s\n", ptr->data.email);
 
             ptr = ptr->next;

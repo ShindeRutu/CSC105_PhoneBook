@@ -18,7 +18,7 @@
 int main()
 {
 
-  int choice, ip2;
+  int choice, ip2, choice3;
   node *root;
   info input;
   info input2;
@@ -112,7 +112,7 @@ int main()
 
     case 3: //EDIT_CONTACT
       printf("\n Enter the name of the person you want to edit: \n");
-      scanf("%[^\n]s", searchkey);
+      scanf(" %[^\n]s", searchkey);
       node *b = search(tree->root, searchkey);
       if (b == NULL)
       {
@@ -122,14 +122,15 @@ int main()
       {
         printf("What do you want to edit? \n");
         printf("1->Change mobile number\n2->Change telephone number\n3->Change email id\n\t");
-        scanf("%c", &choice2);
-        switch (choice2)
+        scanf("%d", &choice3);
+        switch (choice3)
         {
 
         case 1:
           printf("Enter new mobile number\n\n");
           scanf("%lld", &newno);
           b->data.mobNumber = newno;
+		  printf("mobile number changed\n");
 
           break;
 
@@ -137,12 +138,14 @@ int main()
           printf("Enter new Telephone number\n\n");
           scanf("%lld", &newtelno);
           b->data.TelNumber = newtelno;
+		  printf("Telephone number changed\n");
           break;
 
         case 3:
           printf("Enter new Email id\n\n");
           scanf("%s", newemail);
           b->data.email - newemail;
+		  printf("Email changed \n");
 
           break;
 
@@ -156,7 +159,7 @@ int main()
 
     case 4: //CALL
       printf("\n Enter the name of the person you want to call: \n");
-      scanf("%[^\n]s", searchkey);
+      scanf(" %[^\n]s", searchkey);
       node *p = search(tree->root, searchkey);
       if (p == NULL)
       {
@@ -181,7 +184,7 @@ int main()
 
     case 5: //search
       printf("\n Enter the name of the person you want to search: \n");
-      scanf("%[^\n]s", searchkey);
+      scanf(" %[^\n]s", searchkey);
       node *n = search(tree->root, searchkey);
       if (n == NULL)
       {
@@ -225,10 +228,10 @@ int main()
 
       {
         printf("Please enter name.\n");
-        scanf("%[^\n]s", dltKey);
+        scanf(" %[^\n]s", dltKey);
 
         if (deleteContact(tree, dltKey) == true)
-          printf("\n\ndata deleted successfully...");
+          printf("\n\ndata deleted successfully...\n");
         else
           printf("\n\ndata not deleted...\n");
       }
@@ -250,7 +253,7 @@ int main()
         char file[20];
         printf("Enter the file name you want to import contacts from: \n");
 
-        scanf("%s", &file[20]);
+        scanf("%s", file);
         rd = fopen(file, "r");
         if (rd == NULL)
         {
@@ -265,10 +268,10 @@ int main()
 
         while (c = (fgetc(rd)) != EOF)
         {
-          fscanf(rd, "%[^\n]s", &input3.key[30]);
+          fscanf(rd, " %[^\n]s", input3.key);
           fscanf(rd, "%lld", &input3.mobNumber);
           fscanf(rd, "%lld", &input3.TelNumber);
-          fscanf(rd, "%s", &input3.email[40]);
+          fscanf(rd, "%s", input3.email);
           fscanf(rd, "%d", &input3.fav);
           if (input3.fav == 1)
           {
@@ -280,7 +283,7 @@ int main()
           }
           else
           {
-            printf("can't import %s", input3.key);
+            printf("can't import %s\n", input3.key);
           }
         }
         fclose(rd); 
@@ -292,12 +295,12 @@ int main()
         char file2[20];
         if (tree->root == NULL)
         {
-          printf("There are no contacts to export");
+          printf("There are no contacts to export\n");
           break;
         }
 
         printf("Enter the name of the file you want to export contact to : ");
-        scanf("%[^\n]s", &file2[30]);
+        scanf(" %[^\n]s", file2);
         FILE *ww = fopen(file2, "w");
         // fprintf(ww, "done");
         Export(tree, ww);
@@ -312,10 +315,10 @@ int main()
     }
     break;
     case 10: //exit
-      printf("\n\t\t\t\t\tEXIT");
+      printf("\n\t\t\t\t\tEXIT\n"); 
       break;
     default:
-      printf("\n\t\t\t\t\tInvalid choice please choose between 1-10");
+      printf("\n\t\t\t\t\tInvalid choice please choose between 1-10\n");
       break;
     }
   } while (choice != 10);
